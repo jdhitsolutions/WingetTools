@@ -85,6 +85,10 @@ Foxit PDF Reader Foxit.FoxitReader 11.0.0.49893 Foxit is a powerful PDF reader
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://bit.ly/38Ps9nb</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
         <maml:linkText>Get-WGPackage</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
@@ -355,6 +359,10 @@ DAX Studio                DaxStudio.DaxStudio 2.16.2.632</dev:code>
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://bit.ly/3jQh9MH</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
         <maml:linkText>Get-WGInstalled</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
@@ -495,6 +503,10 @@ Windows Package Manager v1.0.11692 v1.0.11692 6/24/2021 8:32:44 PM</dev:code>
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://bit.ly/3nauPEz</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
         <maml:linkText>Install-WinGet</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
@@ -631,6 +643,10 @@ Windows Package Manager v1.0.11692 v1.0.11692 6/24/2021 8:32:44 PM</dev:code>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://bit.ly/2WYteX6</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Get-WGReleaseNote</maml:linkText>
         <maml:uri></maml:uri>

@@ -1,6 +1,6 @@
 # WingetTools
 
-The Wingettools module is a PowerShell wrapper around the winget command-line tool which is Microsoft's latest package manager and installer. Winget is a command-line tool, not a PowerShell command. The commands in the WingetTools module are designed to make using winget a little more PowerShell friendly.
+The WingetTools module is a PowerShell wrapper around the winget command-line tool which is Microsoft's latest package manager and installer. Winget is a command-line tool, not a PowerShell command. The commands in the WingetTools module are designed to make using winget a little more PowerShell friendly.
 
 ## [Install-WinGet](docs/Install-Winget.md)
 
@@ -65,4 +65,4 @@ If there are problems with commands in this module, try running the winget comma
 
 Visit the winget Github repository for more information about the project at <https://github.com/microsoft/winget-cli>.
 
-Last Updated _2021-09-07 16:00:00Z_
+Last Updated _2021-09-07 16:24:04Z_

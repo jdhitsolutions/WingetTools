@@ -1,5 +1,12 @@
 # Changelog for WingetTools
 
+## v0.4.0
+
++ Modified manifest to only export `Install-Winget` in Windows PowerShell sessions.
++ Added online help links.
++ Updated `README.md`.
++ First public release.
+
 ## v0.3.0
 
 + Added `Get-WGInstalled` to list winget installed packages.
