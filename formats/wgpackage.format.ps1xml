@@ -11,27 +11,27 @@ format type data generated 05/20/2020 15:35:37 by BOVINE320\Jeff
         <TypeName>WGPackage</TypeName>
       </ViewSelectedBy>
       <TableControl>
-        <!--Delete the AutoSize node if you want to use the defined widths.-->
-        <AutoSize />
+        <!--Delete the AutoSize node if you want to use the defined widths.
+        <AutoSize />-->
         <TableHeaders>
           <TableColumnHeader>
             <Label>Name</Label>
-            <Width>13</Width>
+            <Width>30</Width>
             <Alignment>left</Alignment>
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>ID</Label>
-            <Width>23</Width>
+            <Width>25</Width>
             <Alignment>left</Alignment>
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>Version</Label>
-            <Width>10</Width>
+            <Width>20</Width>
             <Alignment>left</Alignment>
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>Description</Label>
-            <Width>362</Width>
+            <!-- <Width>362</Width> -->
             <Alignment>left</Alignment>
           </TableColumnHeader>
         </TableHeaders>

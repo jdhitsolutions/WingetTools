@@ -1,57 +1,60 @@
 # WingetTools
+
 ## about_WingetTools
 
-```
-ABOUT TOPIC NOTE:
-The first header of the about topic should be the topic name.
-The second header contains the lookup name used by the help system.
-
-IE:
-# Some Help Topic Name
-## SomeHelpTopicFileName
-
-This will be transformed into the text file
-as `about_SomeHelpTopicFileName`.
-Do not include file extensions.
-The second header should have no spaces.
-```
-
 # SHORT DESCRIPTION
-{{ Short Description Placeholder }}
 
-```
-ABOUT TOPIC NOTE:
-About topics can be no longer than 80 characters wide when rendered to text.
-Any topics greater than 80 characters will be automatically wrapped.
-The generated about topic will be encoded UTF-8.
-```
+The Wingettools module is a PowerShell wrapper around the winget command-line tool.
 
 # LONG DESCRIPTION
-{{ Long Description Placeholder }}
 
-## Optional Subtopics
-{{ Optional Subtopic Placeholder }}
+The winget command-line tool is Microsoft's latest package manager and installer. It is a command-line tool, not a PowerShell command. The commands in the WingetTools module are designed to make using winget a little more PowerShell friendly.
 
-# EXAMPLES
-{{ Code or descriptive examples of how to leverage the functions described. }}
+## Install-WinGet
 
-# NOTE
-{{ Note Placeholder - Additional information that a user needs to know.}}
+Until winget is publically available in the Microsoft Store, you can download and install the latest version from Github. This command must be run in a Windows PowerShell session in Windows 10 or Windows 11. The package requires the
+DesktopAppInstaller package. If it isn't found, it will be downloaded and installed.
+
+## Get-WGReleaseNote
+
+This command will query the Github repository for the winget project and display the release note for the latest version. You can also display it in markdown format or go to the online version.
+
+## Get-WGPackage
+
+This command is a PowerShell wrapper aroung winget.cmd that will get a package and create an object you can use in PowerShell. The object has a default table view but the object has other properties.
+
+    Name         : GitHub CLI
+    ID           : GitHub.cli
+    Version      : 2.0.0
+    Publisher    : GitHub, Inc.
+    Author       : GitHub, Inc.
+    Moniker      : gh
+    Description  : GitHubs official command-line tool.
+    Homepage     : https://github.com/cli/cli
+    License      : MIT License
+    License Url  : https://github.com/cli/cli/blob/HEAD/LICENSE
+    Type         : Msi
+    Locale       : en-US
+    Download Url : https://github.com/cli/cli/releases/download/v2.0.0/gh_2.0.0_windows_amd64.msi
+    SHA256       : 09761ebfcf1a294b79cf5c820d2a51edca9d5e515cbd1036c45862c462b36189
+
+If you want to get details on multiple packages, pipe a winget search command to this PowerShell command.
+
+    winget search --tag github --source winget  | Get-WGPackage
+
+## Get-WGInstalled
+
+This command will get a list of all packages installed with winget. These will be packages with winget as the source.
 
 # TROUBLESHOOTING NOTE
-{{ Troubleshooting Placeholder - Warns users of bugs}}
 
-{{ Explains behavior that is likely to change with fixes }}
+If there are problems with commands in this module, try running the winget command directly. Report problems to the module's Github repository at https://github.com/jdhitsolutions/WingetTools/issues.
 
 # SEE ALSO
-{{ See also placeholder }}
 
-{{ You can also list related articles, blogs, and video URLs. }}
+Visit the winget Github repository for more information about the project at https://github.com/microsoft/winget-cli.
 
 # KEYWORDS
-{{List alternate names or titles for this topic that readers might use.}}
 
-- {{ Keyword Placeholder }}
-- {{ Keyword Placeholder }}
-- {{ Keyword Placeholder }}
-- {{ Keyword Placeholder }}
+- winget
+- packages

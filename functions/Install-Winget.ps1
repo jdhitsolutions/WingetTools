@@ -2,6 +2,8 @@ Function Install-WinGet {
     #Install the latest package from GitHub
     [cmdletbinding(SupportsShouldProcess)]
     [alias("iwg")]
+    [OutputType("None")]
+    [OutputType("Microsoft.Windows.Appx.PackageManager.Commands.AppxPackage")]
     Param(
         [Parameter(HelpMessage = "Display the AppxPackage after installation.")]
         [switch]$Passthru

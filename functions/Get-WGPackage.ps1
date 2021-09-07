@@ -1,38 +1,58 @@
 Function Get-WGPackage {
-#TODO Add -Tags parameter
-
     [cmdletbinding(DefaultParameterSetName = "name")]
     [OutputType("WGPackage")]
     Param(
-        [Parameter(ParameterSetName = "name", Position = 0, HelpMessage = "Specify the package name")]
+        [Parameter(
+            ParameterSetName = "name",
+            Position = 0,
+            ValueFromPipelineByPropertyName,
+            HelpMessage = "Specify the package name"
+            )]
         [ValidateNotNullOrEmpty()]
         [string]$Name,
-        [Parameter(ParameterSetName = "id", HelpMessage = "Specify the package ID")]
+        [Parameter(
+            ParameterSetName = "id",
+            ValueFromPipelineByPropertyName,
+            HelpMessage = "Specify the package ID"
+            )]
         [ValidateNotNullOrEmpty()]
         [string]$ID,
-        [Parameter(ParameterSetName = "moniker", HelpMessage = "Specify the moniker")]
+        [Parameter(
+            ParameterSetName = "moniker",
+            HelpMessage = "Specify the moniker"
+            )]
         [ValidateNotNullOrEmpty()]
-        [string]$Moniker
+        [string]$Moniker,
+        [Parameter(
+            ParameterSetname = "input",
+            ValueFromPipeline,
+            HelpMessage = "Pipe a winget search to this function"
+            )]
+        [string[]]$InputObject,
+
+        [Parameter(Position = 0, HelpMessage = "Specify a winget source")]
+        [ValidateNotNullOrEmpty()]
+        [string]$Source = "winget"
+
     )
     Begin {
         Write-Verbose "[$((Get-Date).TimeofDay) BEGIN  ] Starting $($myinvocation.mycommand)"
         #some regex patterns
         [regex]$rxIDAll = "(?<=\s)[\w-+]{3,}\.[\w-+]{3,}(\.[\w-+]{3,})?"
 
+        Write-Verbose "[$((Get-Date).TimeofDay) BEGIN  ] Using Parameter set $($PSCmdlet.ParameterSetName)"
+        $cmdText = "winget show --source $source"
         Switch ($PSCmdlet.ParameterSetName) {
             "Name" {
                 if ($name) {
-                    $cmdText = "winget show --name $name"
-                }
-                else {
-                    $cmdText = "winget show"
+                    $cmdText += " --name '$name'"
                 }
             }
             "ID" {
-                $cmdText = "winget show --id $id"
+                $cmdText += "  --id $id"
             }
             "Moniker" {
-                $cmdText = "winget show --moniker $moniker"
+                $cmdText += " --moniker $moniker"
             }
         }
 
@@ -41,9 +61,19 @@ Function Get-WGPackage {
 
     } #begin
     Process {
-        Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Invoking: $cmdtext"
 
-        $data = Invoke-Command -ScriptBlock $sb
+        if ($InputObject) {
+            Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Processing winget output"
+            $data = $InputObject | Where-Object { $rxIDAll.IsMatch($InputObject) } |
+            ForEach-Object {
+                $id = $rxIDAll.Match($_).Value
+                winget show --id $id --source $source
+            }
+        }
+        else {
+            Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Invoking: $cmdtext"
+            $data = Invoke-Command -ScriptBlock $sb
+        }
 
         if ($data -match "Multiple apps found") {
             Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Multiple packages found"
@@ -59,9 +89,15 @@ Function Get-WGPackage {
 
         } #if multiple found
         elseif ($data -match "no package found") {
-            write-Warning ($data | Out-String).Trim()
+            if ($cmdText) {
+                Write-Warning $cmdText
+            }
+            elseif ($InputObject) {
+                Write-Warning ($InputObject | out-string)
+            }
+            Write-Warning ($data | Out-String).Trim()
         }
-        else {
+        elseif ($data) {
             Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Converting winget data"
             $data | Out-String | Write-Verbose
             $data | _convert

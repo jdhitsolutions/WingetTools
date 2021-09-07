@@ -1,0 +1,201 @@
+---
+external help file: WingetTools-help.xml
+Module Name: WingetTools
+online version:
+schema: 2.0.0
+---
+
+# Get-WGPackage
+
+## SYNOPSIS
+
+Get information about a winget package
+
+## SYNTAX
+
+### name (Default)
+
+```yaml
+Get-WGPackage [[-Name] <String>] [-Source <String>] [<CommonParameters>]
+```
+
+### id
+
+```yaml
+Get-WGPackage [-ID <String>] [-Source <String>] [<CommonParameters>]
+```
+
+### moniker
+
+```yaml
+Get-WGPackage [-Moniker <String>] [-Source <String>] [<CommonParameters>]
+```
+
+### input
+
+```yaml
+Get-WGPackage [-InputObject <String[]>] [-Source <String>] [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+This command is a PowerShell wrapper aroung winget.cmd that will get a package and create an object you can use in PowerShell.
+
+## EXAMPLES
+
+### Example 1
+
+```powershell
+PS C:\> get-wgpackage -name "Foxit PDF Reader"
+
+Name             ID                Version      Description
+----             --                -------      -----------
+Foxit PDF Reader Foxit.FoxitReader 11.0.0.49893 Foxit is a powerful PDF reader
+                                                for viewing, filling out forms
+                                                and more.
+```
+
+Get a package by its name.
+
+### Example 2
+
+```powershell
+PS C:\> get-wgpackage -id "Microsoft.Powershell.Preview" | Select-object *
+
+Name         : PowerShell Preview
+ID           : Microsoft.PowerShell.Preview
+Version      : 7.2.0.9
+Publisher    : Microsoft Corporation
+Moniker      : pwsh-preview
+Description  : PowerShell is a cross-platform (Windows, Linux, and macOS)
+               automation and configuration tool/framework that works well with
+               your existing tools and is optimized for dealing with structured
+               data (e.g. JSON, CSV, XML, etc.), REST APIs, and object models.
+               It includes a command-line shell, an associated scripting
+               language and a framework for processing cmdlets.
+Homepage     : https://microsoft.com/PowerShell
+License      : MIT
+License Url  : https://github.com/PowerShell/PowerShell/blob/master/LICENSE.txt
+Type         : Msi
+Locale       : en-US
+Download Url : https://github.com/PowerShell/PowerShell/releases/download/v7.2.0
+               -preview.9/PowerShell-7.2.0-preview.9-win-x64.msi
+SHA256       : 380add7b04a0ab02eaebd2a761ddc14eee10aea1f6311ede79849fc68d765531
+```
+
+The output is a rich object.
+
+### Example 3
+
+```powershell
+PS C:\> winget search --tag powerbi | get-wgpackage | Select-Object Name,ID,Version
+
+Name                      ID                  Version
+----                      --                  -------
+Microsoft PowerBI Desktop Microsoft.PowerBI   2.96.1061.0
+DAX Studio                DaxStudio.DaxStudio 2.16.2.632
+```
+
+You can pipe the results of a winget search command to this function.
+
+## PARAMETERS
+
+### -ID
+
+Specify the package ID.
+
+```yaml
+Type: String
+Parameter Sets: id
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -InputObject
+
+Pipe a winget search to this function.
+
+```yaml
+Type: String[]
+Parameter Sets: input
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -Moniker
+
+Specify the winget moniker.
+
+```yaml
+Type: String
+Parameter Sets: moniker
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Name
+
+Specify the winget package name.
+
+```yaml
+Type: String
+Parameter Sets: name
+Aliases:
+
+Required: False
+Position: 0
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -Source
+
+Specify a winget source. Currently, there is really only a single source but this might eventually change.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: winget
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### System.String[]
+
+## OUTPUTS
+
+### WGPackage
+
+## NOTES
+
+Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/
+
+## RELATED LINKS
+
+[Get-WGInstalled](Get-WGInstalled.md)
