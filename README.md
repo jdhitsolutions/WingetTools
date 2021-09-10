@@ -65,4 +65,4 @@ If there are problems with commands in this module, try running the winget comma
 
 Visit the winget Github repository for more information about the project at <https://github.com/microsoft/winget-cli>.
 
-Last Updated _2021-09-07 16:24:04Z_
+Last Updated _2021-09-10 17:41:27Z_

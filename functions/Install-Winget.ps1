@@ -21,7 +21,14 @@ Function Install-WinGet {
     if (-Not $requirement) {
         Write-Verbose "Installing Desktop App Installer requirement"
         Try {
-            Add-AppxPackage -Path "https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx" -erroraction Stop
+            $vclib = Join-Path -Path $env:temp -ChildPath "Microsoft.VCLibs.x64.14.00.Desktop.appx"
+            Invoke-WebRequest -Uri "https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx" -UseBasicParsing -OutFile $vclib -ErrorAction stop
+            if (Test-Path $vclib) {
+                Add-AppxPackage -Path $vclib -ErrorAction Stop
+            }
+            else {
+                Throw "Failed to find $vclib"
+            }
         }
         Catch {
             Throw $_
@@ -32,7 +39,7 @@ Function Install-WinGet {
 
     Try {
         Write-Verbose "[$((Get-Date).TimeofDay)] Getting information from $uri"
-        $get = Invoke-RestMethod -uri $uri -Method Get -ErrorAction stop
+        $get = Invoke-RestMethod -Uri $uri -Method Get -ErrorAction stop
 
         Write-Verbose "[$((Get-Date).TimeofDay)] getting latest release"
         #$data = $get | Select-Object -first 1
@@ -42,7 +49,7 @@ Function Install-WinGet {
         #$data.assets[0].browser_download_url
         Write-Verbose "[$((Get-Date).TimeofDay)] $appx"
         If ($pscmdlet.ShouldProcess($appx, "Downloading asset")) {
-            $file = Join-Path -path $env:temp -ChildPath $data.name
+            $file = Join-Path -Path $env:temp -ChildPath $data.name
 
             Write-Verbose "[$((Get-Date).TimeofDay)] Saving to $file"
             Invoke-WebRequest -Uri $appx -UseBasicParsing -DisableKeepAlive -OutFile $file
