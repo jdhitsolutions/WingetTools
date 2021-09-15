@@ -17,9 +17,10 @@ Function Install-WinGet {
     }
 
     #test for requirement
-    $Requirement = Get-AppPackage "Microsoft.DesktopAppInstaller"
+    $Requirement = Get-AppPackage Microsoft.VBLibs.140.00.UWPDesktop
+
     if (-Not $requirement) {
-        Write-Verbose "Installing Desktop App Installer requirement"
+        Write-Verbose "Installing Desktop App requirement"
         Try {
             $vclib = Join-Path -Path $env:temp -ChildPath "Microsoft.VCLibs.x64.14.00.Desktop.appx"
             Invoke-WebRequest -Uri "https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx" -UseBasicParsing -OutFile $vclib -ErrorAction stop

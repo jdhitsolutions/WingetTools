@@ -1,5 +1,14 @@
 # Changelog for WingetTools
 
+## v0.5.1
+
++ Revised `Install-Winget` to better test for the VCLibs requirement.
++ Updated help documentation.
+
+## v0.5.0
+
++ Revised `Install-Winget` to download the VCLib requirement and then install it instead of relying on `Add-AppxPackage` and a URL path which doesn't always work.
+
 ## v0.4.0
 
 + Modified manifest to only export `Install-Winget` in Windows PowerShell sessions.

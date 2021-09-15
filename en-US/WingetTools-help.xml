@@ -522,7 +522,7 @@ Windows Package Manager v1.0.11692 v1.0.11692 6/24/2021 8:32:44 PM</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Until winget is publically available in the Microsoft Store, you can download and install the latest version from Github. This command must be run in a Windows PowerShell session in Windows 10 or Windows 11. The package requires the DesktopAppInstaller package. If it isn't found, it will be downloaded and installed.</maml:para>
+      <maml:para>Until winget is publically available in the Microsoft Store, you can download and install the latest version from Github. This command must be run in a Windows PowerShell session in Windows 10 or Windows 11. The package requires the Microsoft.VCLibs.140.00.UWPDesktop package. If it isn't found, it will be downloaded and installed.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>

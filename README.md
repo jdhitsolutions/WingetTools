@@ -1,5 +1,7 @@
 # WingetTools
 
+[![PSGallery Version](https://img.shields.io/powershellgallery/v/WingetTools.png?style=for-the-badge&label=PowerShell%20Gallery)](https://www.powershellgallery.com/packages/WingetTools/) [![PSGallery Downloads](https://img.shields.io/powershellgallery/dt/WingetTools.png?style=for-the-badge&label=Downloads)](https://www.powershellgallery.com/packages/WingetTools/)
+
 The WingetTools module is a PowerShell wrapper around the winget command-line tool which is Microsoft's latest package manager and installer. Winget is a command-line tool, not a PowerShell command. The commands in the WingetTools module are designed to make using winget a little more PowerShell friendly.
 
 ## [Install-WinGet](docs/Install-Winget.md)
@@ -65,4 +67,4 @@ If there are problems with commands in this module, try running the winget comma
 
 Visit the winget Github repository for more information about the project at <https://github.com/microsoft/winget-cli>.
 
-Last Updated _2021-09-10 17:41:27Z_
+Last Updated _2021-09-15 13:51:49Z_

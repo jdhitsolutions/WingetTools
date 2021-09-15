@@ -19,7 +19,7 @@ Install-WinGet [-Passthru] [-WhatIf] [-Confirm] [<CommonParameters>]
 
 ## DESCRIPTION
 
-Until winget is publically available in the Microsoft Store, you can download and install the latest version from Github. This command must be run in a Windows PowerShell session in Windows 10 or Windows 11. The package requires the DesktopAppInstaller package. If it isn't found, it will be downloaded and installed.
+Until winget is publically available in the Microsoft Store, you can download and install the latest version from Github. This command must be run in a Windows PowerShell session in Windows 10 or Windows 11. The package requires the Microsoft.VCLibs.140.00.UWPDesktop package. If it isn't found, it will be downloaded and installed.
 
 ## EXAMPLES
 
