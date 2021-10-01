@@ -1,4 +1,4 @@
-﻿---
+---
 external help file: WingetTools-help.xml
 Module Name: WingetTools
 online version: https://bit.ly/3nauPEz
@@ -14,7 +14,7 @@ Get the latest release note for winget.
 ## SYNTAX
 
 ```yaml
-Get-WGReleaseNote [-AsMarkdown] [-Online] [<CommonParameters>]
+Get-WGReleaseNote [-AsMarkdown] [-Online] [-Preview] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,13 +28,22 @@ This command will query the Github repository for the winget project and display
 ```powershell
 PS C:\> Get-WGReleaseNote
 
-Name       : Windows Package Manager v1.0.11692
-Version    : v1.0.11692
-Published  : 6/24/2021 8:32:44 PM
+Name       : Windows Package Manager v1.1.12653
+Version    : v1.1.12653
+Published  : 9/27/2021 6:08:01 PM
 Prerelease : False
-Notes      : This release fixes a few bugs. The first one is related to users
-             and installers executing [Ctrl]+[c]. The next is a fallback when
-...
+Notes      : This release represents our Windows Package Manager 1.release
+             candidate build for Windows 10 (1809+).
+
+             Experimental features have been disabled in this release. We will
+             follow this release with another Pre-release "developer"
+             build at GitHub so users can continue with experimental features
+             available.
+
+             # Bugs
+             #797 Silent install of "winget install git.git" is not working
+             #1497 Make rename retry more frequently for longer, then try
+             making a hardlink
 ```
 
 The default output.
@@ -54,10 +63,31 @@ PS C:\> Get-WGReleaseNote | Select-Object Name,Version,Published
 
 Name                               Version    Published
 ----                               -------    ---------
-Windows Package Manager v1.0.11692 v1.0.11692 6/24/2021 8:32:44 PM
+Windows Package Manager v1.1.12653 v1.1.12653 9/27/2021 6:08:01 PM
 ```
 
 The output is an object.
+
+### Example 4
+
+```powershell
+PS C:\> Get-WGReleaseNote -Preview
+
+
+Name       : Windows Package Manager v1.1.12701
+Version    : v1.1.12701
+Published  : 9/28/2021 10:30:01 AM
+Prerelease : True
+Notes      : This release is the first development build after the Windows
+             Package Manager 1.1 release candidate build for Windows 10
+             (1809+).
+
+             Experimental features have been enabled in this release. This
+             build will be released to Windows Insider Dev builds, and
+             Windows Package Manager Insiders.
+```
+
+Get the release note for the latest preview.
 
 ## PARAMETERS
 
@@ -80,6 +110,22 @@ Accept wildcard characters: False
 ### -Online
 
 Open the release note location online using your default web browser.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Preview
+
+Get latest preview release.
 
 ```yaml
 Type: SwitchParameter

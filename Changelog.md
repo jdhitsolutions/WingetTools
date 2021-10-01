@@ -1,5 +1,11 @@
 # Changelog for WingetTools
 
+## v0.6.0
+
++ Update `Install-Winget` to allow installing latest stable or preview build.
++ Update `Get-WGReleaseNote` to allow getting latest stable or preview release note.
++ Updated help documentation.
+
 ## v0.5.1
 
 + Revised `Install-Winget` to better test for the VCLibs requirement.

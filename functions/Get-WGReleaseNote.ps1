@@ -7,7 +7,9 @@ Function Get-WGReleaseNote {
         [Parameter(HelpMessage = "Create a markdown document.")]
         [alias("md")]
         [switch]$AsMarkdown,
-        [switch]$Online
+        [switch]$Online,
+        [Parameter(HelpMessage = "Get latest preview release")]
+        [switch]$Preview
     )
 
     Write-Verbose "[$((Get-Date).TimeofDay)] Starting $($myinvocation.mycommand)"
@@ -18,8 +20,15 @@ Function Get-WGReleaseNote {
         Write-Verbose "[$((Get-Date).TimeofDay)] Getting information from $uri"
         $get = Invoke-RestMethod -uri $uri -Method Get -ErrorAction stop
 
-        Write-Verbose "[$((Get-Date).TimeofDay)] getting latest release"
-        $data = $get | Select-Object -first 1
+        if ($Preview) {
+            Write-Verbose "[$((Get-Date).TimeofDay)] Getting latest preview release"
+            $data = $get | Where-Object {$_.PreRelease} | Select-Object -first 1
+        }
+        else {
+            Write-Verbose "[$((Get-Date).TimeofDay)] Getting latest stable release"
+            $data = $get | Where-Object {-not $_.PreRelease} | Select-Object -first 1
+
+        }
 
         $data | Select-Object -Property Name, tag_name, published_at, prerelease,
 

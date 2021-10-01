@@ -5,6 +5,8 @@ Function Install-WinGet {
     [OutputType("None")]
     [OutputType("Microsoft.Windows.Appx.PackageManager.Commands.AppxPackage")]
     Param(
+        [Parameter(HelpMessage = "Install the latest preview build.")]
+        [switch]$Preview,
         [Parameter(HelpMessage = "Display the AppxPackage after installation.")]
         [switch]$Passthru
     )
@@ -41,10 +43,16 @@ Function Install-WinGet {
     Try {
         Write-Verbose "[$((Get-Date).TimeofDay)] Getting information from $uri"
         $get = Invoke-RestMethod -Uri $uri -Method Get -ErrorAction stop
+        if ($preview) {
+            Write-Verbose "[$((Get-Date).TimeofDay)] Getting latest preview release"
+            $data = ($get | where-object {$_.Prerelease} | Select-Object -first 1).Assets | Where-Object name -Match 'msixbundle'
+        }
+        else {
+            Write-Verbose "[$((Get-Date).TimeofDay)] Getting latest stable release"
+            $data = ($get | where-object {-Not $_.Prerelease} | Select-Object -first 1).Assets | Where-Object name -Match 'msixbundle'
 
-        Write-Verbose "[$((Get-Date).TimeofDay)] getting latest release"
+        }
         #$data = $get | Select-Object -first 1
-        $data = $get[0].assets | Where-Object name -Match 'msixbundle'
 
         $appx = $data.browser_download_url
         #$data.assets[0].browser_download_url

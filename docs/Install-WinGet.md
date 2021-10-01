@@ -1,4 +1,4 @@
-﻿---
+---
 external help file: WingetTools-help.xml
 Module Name: WingetTools
 online version: https://bit.ly/2WYteX6
@@ -14,7 +14,7 @@ Install the latest winget release from Github.
 ## SYNTAX
 
 ```yaml
-Install-WinGet [-Passthru] [-WhatIf] [-Confirm] [<CommonParameters>]
+Install-WinGet [-Preview] [-Passthru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -42,7 +42,7 @@ Aliases: cf
 
 Required: False
 Position: Named
-Default value: None
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -58,20 +58,35 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -WhatIf
 
-Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
+Shows what would happen if the cmdlet runs. The cmdlet is not run.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: wi
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Preview
+
+Install the latest preview build.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
 
 Required: False
 Position: Named

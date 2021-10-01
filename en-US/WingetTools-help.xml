@@ -405,6 +405,17 @@ DAX Studio                DaxStudio.DaxStudio 2.16.2.632</dev:code>
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Preview</maml:name>
+          <maml:description>
+            <maml:para>Get latest preview release.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
@@ -424,6 +435,18 @@ DAX Studio                DaxStudio.DaxStudio 2.16.2.632</dev:code>
         <maml:name>Online</maml:name>
         <maml:description>
           <maml:para>Open the release note location online using your default web browser.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Preview</maml:name>
+        <maml:description>
+          <maml:para>Get latest preview release.</maml:para>
         </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -471,13 +494,22 @@ DAX Studio                DaxStudio.DaxStudio 2.16.2.632</dev:code>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Get-WGReleaseNote
 
-Name       : Windows Package Manager v1.0.11692
-Version    : v1.0.11692
-Published  : 6/24/2021 8:32:44 PM
+Name       : Windows Package Manager v1.1.12653
+Version    : v1.1.12653
+Published  : 9/27/2021 6:08:01 PM
 Prerelease : False
-Notes      : This release fixes a few bugs. The first one is related to users
-             and installers executing [Ctrl]+[c]. The next is a fallback when
-...</dev:code>
+Notes      : This release represents our Windows Package Manager 1.release
+             candidate build for Windows 10 (1809+).
+
+             Experimental features have been disabled in this release. We will
+             follow this release with another Pre-release "developer"
+             build at GitHub so users can continue with experimental features
+             available.
+
+             # Bugs
+             #797 Silent install of "winget install git.git" is not working
+             #1497 Make rename retry more frequently for longer, then try
+             making a hardlink</dev:code>
         <dev:remarks>
           <maml:para>The default output.</maml:para>
         </dev:remarks>
@@ -495,9 +527,29 @@ Notes      : This release fixes a few bugs. The first one is related to users
 
 Name                               Version    Published
 ----                               -------    ---------
-Windows Package Manager v1.0.11692 v1.0.11692 6/24/2021 8:32:44 PM</dev:code>
+Windows Package Manager v1.1.12653 v1.1.12653 9/27/2021 6:08:01 PM</dev:code>
         <dev:remarks>
           <maml:para>The output is an object.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 4 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-WGReleaseNote -Preview
+
+
+Name       : Windows Package Manager v1.1.12701
+Version    : v1.1.12701
+Published  : 9/28/2021 10:30:01 AM
+Prerelease : True
+Notes      : This release is the first development build after the Windows
+             Package Manager 1.1 release candidate build for Windows 10
+             (1809+).
+
+             Experimental features have been enabled in this release. This
+             build will be released to Windows Insider Dev builds, and
+             Windows Package Manager Insiders.</dev:code>
+        <dev:remarks>
+          <maml:para>Get the release note for the latest preview.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -560,6 +612,17 @@ Windows Package Manager v1.0.11692 v1.0.11692 6/24/2021 8:32:44 PM</dev:code>
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Preview</maml:name>
+          <maml:description>
+            <maml:para>Install the latest preview build.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
@@ -591,6 +654,18 @@ Windows Package Manager v1.0.11692 v1.0.11692 6/24/2021 8:32:44 PM</dev:code>
         <maml:name>WhatIf</maml:name>
         <maml:description>
           <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Preview</maml:name>
+        <maml:description>
+          <maml:para>Install the latest preview build.</maml:para>
         </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
