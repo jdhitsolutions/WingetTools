@@ -8,7 +8,7 @@
 RootModule = 'WingetTools.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.6.0'
+ModuleVersion = '0.7.0'
 
 # Supported PSEditions
 CompatiblePSEditions = @('Desktop','Core')
@@ -31,14 +31,11 @@ Description = 'A set of PowerShell tools for working with the winget package man
 # Minimum version of the PowerShell engine required by this module
 PowerShellVersion = '5.1'
 
-# Script files (.ps1) that are run in the caller's environment prior to importing this module.
-# ScriptsToProcess = @()
-
 # Type files (.ps1xml) to be loaded when importing this module
 # TypesToProcess = @()
 
 # Format files (.ps1xml) to be loaded when importing this module
-FormatsToProcess = @('formats\wgpackage.format.ps1xml')
+FormatsToProcess = @('formats\wgpackage.format.ps1xml','formats\wingetupgrade.format.ps1xml')
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 FunctionsToExport = if ($PSEdition -eq 'Desktop') {
