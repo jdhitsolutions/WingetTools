@@ -1,3 +1,4 @@
+#this command will work in PowerShell 7.2 and later
 Function Install-WinGet {
     #Install the latest package from GitHub
     [cmdletbinding(SupportsShouldProcess)]
@@ -13,13 +14,13 @@ Function Install-WinGet {
 
     Write-Verbose "[$((Get-Date).TimeofDay)] Starting $($myinvocation.mycommand)"
 
-    if ($PSVersionTable.PSVersion.Major -eq 7) {
-        Write-Warning "This command does not work in PowerShell 7. You must install in Windows PowerShell."
+    if ($Iscoreclr -AND ($PSVersionTable.PSVersion -le 7.2)) {
+        Write-Warning "If running this command in PowerShell 7, you need at least version 7.2."
         return
     }
 
     #test for requirement
-    $Requirement = Get-AppPackage Microsoft.VBLibs.140.00.UWPDesktop
+    $Requirement = Get-AppPackage Microsoft.VCLibs.140.00.UWPDesktop
 
     if (-Not $requirement) {
         Write-Verbose "Installing Desktop App requirement"

@@ -4,93 +4,35 @@
 
 @{
 
-# Script module or binary module file associated with this manifest.
-RootModule = 'WingetTools.psm1'
+    RootModule           = 'WingetTools.psm1'
+    ModuleVersion        = '0.7.0'
+    CompatiblePSEditions = @('Desktop', 'Core')
+    GUID                 = '1130bb85-58d1-487d-9763-c38011f9613d'
+    Author               = 'Jeff Hicks'
+    CompanyName          = 'JDH Information Technology Solutions, Inc.'
+    Copyright            = '2021-2022 JDH Information Technology Solutions, Inc.'
+    Description          = 'A set of PowerShell tools for working with the winget package manager.'
+    PowerShellVersion    = '5.1'
 
-# Version number of this module.
-ModuleVersion = '0.7.0'
+    # Type files (.ps1xml) to be loaded when importing this module
+    # TypesToProcess = @()
 
-# Supported PSEditions
-CompatiblePSEditions = @('Desktop','Core')
+    FormatsToProcess     = @('formats\wgpackage.format.ps1xml', 'formats\wingetupgrade.format.ps1xml')
+    FunctionsToExport    = 'Get-WGPackage', 'Install-Winget', 'Get-WGReleaseNote', 'Get-WGInstalled',
+    'Invoke-WGUpgrade', 'Get-WGUpgrade'
+    AliasesToExport      = 'wglatest', 'iwg'
+    PrivateData          = @{
 
-# ID used to uniquely identify this module
-GUID = '1130bb85-58d1-487d-9763-c38011f9613d'
+        PSData = @{
+            Tags         = @('winget', 'packagemanagement')
+            LicenseUri   = 'https://github.com/jdhitsolutions/WingetTools/blob/main/LICENSE.txt'
+            ProjectUri   = 'https://github.com/jdhitsolutions/WingetTools'
+            # IconUri = ''
+            ReleaseNotes = 'https://github.com/jdhitsolutions/WingetTools/blob/main/README.md'
 
-# Author of this module
-Author = 'Jeff Hicks'
+        } # End of PSData hashtable
 
-# Company or vendor of this module
-CompanyName = 'JDH Information Technology Solutions, Inc.'
-
-# Copyright statement for this module
-Copyright = '2021 JDH Information Technology Solutions, Inc.'
-
-# Description of the functionality provided by this module
-Description = 'A set of PowerShell tools for working with the winget package manager.'
-
-# Minimum version of the PowerShell engine required by this module
-PowerShellVersion = '5.1'
-
-# Type files (.ps1xml) to be loaded when importing this module
-# TypesToProcess = @()
-
-# Format files (.ps1xml) to be loaded when importing this module
-FormatsToProcess = @('formats\wgpackage.format.ps1xml','formats\wingetupgrade.format.ps1xml')
-
-# Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = if ($PSEdition -eq 'Desktop') {
-    'Get-WGPackage','Install-Winget','Get-WGReleaseNote','Get-WGInstalled'}
-    else {
-        'Get-WGPackage','Get-WGReleaseNote','Get-WGInstalled'
-    }
-
-# Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
-CmdletsToExport = ''
-
-# Variables to export from this module
-VariablesToExport = ''
-
-# Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
-AliasesToExport = 'wglatest','iwg'
-
-# Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
-PrivateData = @{
-
-    PSData = @{
-
-        # Tags applied to this module. These help with module discovery in online galleries.
-        Tags = @('winget','packagemanagement')
-
-        # A URL to the license for this module.
-        LicenseUri = 'https://github.com/jdhitsolutions/WingetTools/blob/main/LICENSE.txt'
-
-        # A URL to the main website for this project.
-        ProjectUri = 'https://github.com/jdhitsolutions/WingetTools'
-
-        # A URL to an icon representing this module.
-        # IconUri = ''
-
-        # ReleaseNotes of this module
-        ReleaseNotes = 'https://github.com/jdhitsolutions/WingetTools/blob/main/README.md'
-
-        # Prerelease string of this module
-        # Prerelease = ''
-
-        # Flag to indicate whether the module requires explicit user acceptance for install/update/save
-        # RequireLicenseAcceptance = $false
-
-        # External dependent modules of this module
-        # ExternalModuleDependencies = @()
-
-    } # End of PSData hashtable
-
-} # End of PrivateData hashtable
-
-# HelpInfo URI of this module
-# HelpInfoURI = ''
-
-# Default prefix for commands exported from this module. Override the default prefix using Import-Module -Prefix.
-# DefaultCommandPrefix = ''
+    } # End of PrivateData hashtable
 
 }
 

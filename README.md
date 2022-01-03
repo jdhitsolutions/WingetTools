@@ -22,7 +22,7 @@ You can also display it in markdown format, which is helpful if running in Power
 
 You also have an option to go online to view the release note.
 
-## Get-WGPackage
+## [Get-WGPackage](docs/get-WGPackage.md)
 
 This command is a PowerShell wrapper aroung winget.cmd that will get a package and create an object you can use in PowerShell.
 
@@ -51,7 +51,7 @@ The command typically gets a single package, but you can pipe a winget search co
 
 ![get winget package search](images/get-wgpackage-2.png)
 
-## Get-WGInstalled
+## [Get-WGInstalled](docs/Get-WGInstalled.md)
 
 This command will get a list of all packages installed with winget. These will be packages with winget as the source.
 
@@ -61,10 +61,46 @@ Get-WGInstalled | Select Name,ID,Version,Homepage | Out-Gridview
 
 ![get winget installed](images/get-wginstalled.png)
 
+## [Get-WGUpgrade](docs/Get-WGUpgrade.md)
+
+This command will attempt to get all available updates and create PowerShell-friendly output.
+
+![get-wgupgrade](images/get-wgupgrade.png)
+
+The default output is formatted as a table. But you can use the output in PowerShell.
+
+```dos
+PS C:\> Get-WGUpgrade -Name *toys* | select *
+
+Source    : winget
+Name      : PowerToys (Preview)
+ID        : Microsoft.PowerToys
+Version   : 0.47.0
+Available : 0.51.1
+```
+
+![install upgrade](images/install-upgrade.png)
+
+There is a known issue that when you run `Get-WGUpgrade` on a new day, there is extra garbage in the output.
+
+![get-wgupgrade bug](images/get-wgupgrade-bug.png)
+
+This is under investigation.
+
+## [Invoke-WGUpgrade](docs/Invoke-WGUpgrade.md)
+
+Invoke-WGUpgrade will run the winget upgrade process using silent installation and accepting all licenses and agreements. It supports `-Whatif`.
+
+```dos
+PS C:\> Get-WGUpgrade -Name p* | Invoke-WGUpgrade -WhatIf
+What if: Performing the operation "Upgrade from 3.1.2+06767 to 3.2.0+06857" on target "PrivateInternetAccess.PrivateInternetAcceΓÇª".
+What if: Performing the operation "Upgrade from 0.47.0 to 0.51.1" on target "Microsoft.PowerToys".
+```
+
+Be aware, that winget may still have a problem running the upgrade due to issues isolating upgrade packages.
+
 ## Issues
 
 If there are problems with commands in this module, try running the winget command directly. Report problems to the module's Github repository at <https://github.com/jdhitsolutions/WingetTools/issues>.
 
 Visit the winget Github repository for more information about the project at <https://github.com/microsoft/winget-cli>.
-
-Last Updated _2021-10-01 18:43:06Z_

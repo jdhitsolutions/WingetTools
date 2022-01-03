@@ -46,6 +46,14 @@ If you want to get details on multiple packages, pipe a winget search command to
 
 This command will get a list of all packages installed with winget. These will be packages with winget as the source.
 
+## Get-WGUpgrade
+
+This command makes it easier to get PowerShell objects that reflect upgrade packages. The command writes a custom object to the pipeline which is formatted as a table by default. You can use this command to pipe to winget.exe in a ForEach loop to upgrade, or pipe to Invoke-WGUpgrade which supports -WhatIf.
+
+## Invoke-WGUpgrade
+
+This command is a wrapper around the winget upgrade option. The upgrade is done using the package ID and silent install options. The upgrade also accepts all licenses and agreements.
+
 # TROUBLESHOOTING NOTE
 
 If there are problems with commands in this module, try running the winget command directly. Report problems to the module's Github repository at https://github.com/jdhitsolutions/WingetTools/issues.

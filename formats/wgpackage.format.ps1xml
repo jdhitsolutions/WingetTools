@@ -21,7 +21,7 @@ format type data generated 05/20/2020 15:35:37 by BOVINE320\Jeff
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>ID</Label>
-            <Width>25</Width>
+            <Width>30</Width>
             <Alignment>left</Alignment>
           </TableColumnHeader>
           <TableColumnHeader>

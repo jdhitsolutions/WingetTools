@@ -5,6 +5,7 @@ Function Get-WGPackage {
         [Parameter(
             ParameterSetName = "name",
             Position = 0,
+            Mandatory,
             ValueFromPipelineByPropertyName,
             HelpMessage = "Specify the package name"
             )]
@@ -30,7 +31,7 @@ Function Get-WGPackage {
             )]
         [string[]]$InputObject,
 
-        [Parameter(Position = 0, HelpMessage = "Specify a winget source")]
+        [Parameter(HelpMessage = "Specify a winget source")]
         [ValidateNotNullOrEmpty()]
         [string]$Source = "winget"
 
@@ -40,8 +41,10 @@ Function Get-WGPackage {
         #some regex patterns
         [regex]$rxIDAll = "(?<=\s)[\w-+]{3,}\.[\w-+]{3,}(\.[\w-+]{3,})?"
 
+        Write-Verbose "[$((Get-Date).TimeofDay) BEGIN  ] Using source $source"
         Write-Verbose "[$((Get-Date).TimeofDay) BEGIN  ] Using Parameter set $($PSCmdlet.ParameterSetName)"
         $cmdText = "winget show --source $source"
+
         Switch ($PSCmdlet.ParameterSetName) {
             "Name" {
                 if ($name) {
@@ -93,7 +96,7 @@ Function Get-WGPackage {
                 Write-Warning $cmdText
             }
             elseif ($InputObject) {
-                Write-Warning ($InputObject | out-string)
+                Write-Warning ($InputObject | Out-String)
             }
             Write-Warning ($data | Out-String).Trim()
         }
