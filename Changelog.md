@@ -1,5 +1,16 @@
 # Changelog for WingetTools
 
+## v0.7.0
+
++ Added `Get-WGUpgrade` and `Invoke-WGUpgrade`.
++ Added format file `wingetupgrade.format.ps1xml`.
++ Fixed package name typo in `Install-Winget`.
++ Updated manifest to export all commands. PowerShell 7.2 now supports the Appx module which had been a blocker. **This is a breaking change.**
++ Fixed bug in `Get-WGPackage` with the `Source` parameter.
++ Updated help documentation.
++ License update.
++ Updated `README.md`.
+
 ## v0.6.0
 
 + Update `Install-Winget` to allow installing latest stable or preview build.
