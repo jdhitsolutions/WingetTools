@@ -44,6 +44,7 @@ Notes      : This release represents our Windows Package Manager 1.release
              #797 Silent install of "winget install git.git" is not working
              #1497 Make rename retry more frequently for longer, then try
              making a hardlink
+Link       : https://github.com/microsoft/winget-cli/releases/tag/v1.1.12653
 ```
 
 The default output.
@@ -151,7 +152,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### System.String
 
-### ReleaseNote
+### WGReleaseNote
 
 ## NOTES
 
@@ -160,3 +161,5 @@ Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell
 ## RELATED LINKS
 
 [Install-WinGet](Install-WinGet.md)
+
+[Test-WGVersion](Test-WGVersion.md)

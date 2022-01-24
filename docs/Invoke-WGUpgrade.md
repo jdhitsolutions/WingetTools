@@ -63,6 +63,14 @@ What if: Performing the operation "Upgrade from 0.47.0 to 0.51.1" on target "Mic
 
 You can pipe output from Get-WGUpgrade to this command.
 
+### Example 3
+
+```powershell
+PS C:\> Get-WGUpgrade | Out-GridView -OutputMode Multiple | Invoke-WGUpgrade
+```
+
+Pipe the list of available upgrades to Out-Gridview where you can select items. Invoke-WGUpgrade will then install the selected upgrades.
+
 ## PARAMETERS
 
 ### -Confirm

@@ -81,15 +81,9 @@ Available : 0.51.1
 
 ![install upgrade](images/install-upgrade.png)
 
-There is a known issue that when you run `Get-WGUpgrade` on a new day, there is extra garbage in the output.
-
-![get-wgupgrade bug](images/get-wgupgrade-bug.png)
-
-This is under investigation.
-
 ## [Invoke-WGUpgrade](docs/Invoke-WGUpgrade.md)
 
-Invoke-WGUpgrade will run the winget upgrade process using silent installation and accepting all licenses and agreements. It supports `-Whatif`.
+`Invoke-WGUpgrade` will run the winget upgrade process using silent installation and accepting all licenses and agreements. It supports `-Whatif`.
 
 ```dos
 PS C:\> Get-WGUpgrade -Name p* | Invoke-WGUpgrade -WhatIf
@@ -98,6 +92,27 @@ What if: Performing the operation "Upgrade from 0.47.0 to 0.51.1" on target "Mic
 ```
 
 Be aware, that winget may still have a problem running the upgrade due to issues isolating upgrade packages.
+
+## [Test-WGVersion](docs/Test-WGVersion.md)
+
+The test command is an easy way to determine if an update for winget itself is available from Github.
+
+```dos
+PS C:\> Test-WGVersion
+
+Installed    Online       Update    Command
+---------    ------       ------    -------
+1.1.13405    1.1.12653    False     C:\Users\Jeff\AppData\Local\Microsoft\Windo…
+```
+
+If an update is available and you are running the command in the PowerShell console or VSCode, the `Update` value will be displayed in green.
+
+You can use the `-Quiet` parameter to return a Boolean result.
+
+```dos
+PS C:\> Test-WGVersion -Quiet
+False
+```
 
 ## Issues
 

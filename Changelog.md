@@ -1,5 +1,14 @@
 # Changelog for WingetTools
 
+## v1.0.0
+
++ Fixed bug with `Get-WGUpgrade` that had bad formatting when running the command either first thing in the day, or when some sort of caching was getting cleared.
++ Added command `Test-WGVersion` and format file `wgversion.format.ps1xml`.
++ Updated `Get-WGReleaseNote` to include the online link.
++ Modified the object typename for `Get-WGReleaseNote` to align it with other object names in this module. __*This is a breaking change.*__
++ Updated help documentation.
++ Updated `README.md`.
+
 ## v0.7.0
 
 + Added `Get-WGUpgrade` and `Invoke-WGUpgrade`.

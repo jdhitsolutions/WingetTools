@@ -477,7 +477,7 @@ DAX Studio                DaxStudio.DaxStudio 2.16.2.632</dev:code>
       </command:returnValue>
       <command:returnValue>
         <dev:type>
-          <maml:name>ReleaseNote</maml:name>
+          <maml:name>WGReleaseNote</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -509,7 +509,8 @@ Notes      : This release represents our Windows Package Manager 1.release
              # Bugs
              #797 Silent install of "winget install git.git" is not working
              #1497 Make rename retry more frequently for longer, then try
-             making a hardlink</dev:code>
+             making a hardlink
+Link       : https://github.com/microsoft/winget-cli/releases/tag/v1.1.12653</dev:code>
         <dev:remarks>
           <maml:para>The default output.</maml:para>
         </dev:remarks>
@@ -560,6 +561,10 @@ Notes      : This release is the first development build after the Windows
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Install-WinGet</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Test-WGVersion</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
@@ -1059,10 +1064,120 @@ What if: Performing the operation "Upgrade from 0.47.0 to 0.51.1" on target "Mic
           <maml:para>You can pipe output from Get-WGUpgrade to this command.</maml:para>
         </dev:remarks>
       </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-WGUpgrade | Out-GridView -OutputMode Multiple | Invoke-WGUpgrade</dev:code>
+        <dev:remarks>
+          <maml:para>Pipe the list of available upgrades to Out-Gridview where you can select items. Invoke-WGUpgrade will then install the selected upgrades.</maml:para>
+        </dev:remarks>
+      </command:example>
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Get-WGUpgrade</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Test-WGVersion</command:name>
+      <command:verb>Test</command:verb>
+      <command:noun>WGVersion</command:noun>
+      <maml:description>
+        <maml:para>Test Winget version</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Test-WGVersion is a simple command you use to discover if you need to update winget.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Test-WGVersion</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+          <maml:name>Quiet</maml:name>
+          <maml:description>
+            <maml:para>Get a Boolean result indicating if an update is available.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+        <maml:name>Quiet</maml:name>
+        <maml:description>
+          <maml:para>Get a Boolean result indicating if an update is available.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>WGVersion</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Test-WGVersion
+
+Installed    Online       Update    Command
+---------    ------       ------    -------
+1.1.13405    1.1.12653    False     C:\Users\Jeff\AppData\Local\Microsoft\Windo…</dev:code>
+        <dev:remarks>
+          <maml:para>The default output is an object showing the currently installed version and the latest stable version online. If an update is available, and you are running in the PowerShell console or VS Code, the Update value will be displayed in Green.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Test-WGVersion -Quiet
+False</dev:code>
+        <dev:remarks>
+          <maml:para>Run the test and get a simple, Boolean result indicating if an update is available.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Get-WGReleaseNote</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>

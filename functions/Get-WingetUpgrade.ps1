@@ -14,7 +14,7 @@ Function Get-WGUpgrade {
     Write-Verbose "Starting $($MyInvocation.MyCommand)"
     #create a list to hold the results
     $list = [System.Collections.Generic.list[object]]::New()
-    $up = (winget upgrade).trim() | Where-Object { $_ -match "\d+\.\d+" }
+    $up = (winget upgrade).trim() | Where-Object { $_ -match "\d+\.\d+\s(?!MB)" }
 
     Write-Verbose "Found $($up.count) available upgrades"
 
