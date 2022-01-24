@@ -706,6 +706,10 @@ PowerToys (Preview)                       Microsoft.PowerToys 0.47.0  0.51.1</de
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://bit.ly/3fVkHKQ</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
         <maml:linkText>Invoke-WGUpgrade</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
@@ -1074,6 +1078,10 @@ What if: Performing the operation "Upgrade from 0.47.0 to 0.51.1" on target "Mic
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://bit.ly/3FVQsOn</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
         <maml:linkText>Get-WGUpgrade</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
@@ -1176,6 +1184,10 @@ False</dev:code>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://bit.ly/3GYwrbj</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Get-WGReleaseNote</maml:linkText>
         <maml:uri></maml:uri>
