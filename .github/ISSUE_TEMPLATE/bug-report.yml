@@ -24,7 +24,7 @@ body:
     id: additional-info
     attributes:
       label: Additional Information
-      description: Do you have any additional information or context that you think will be helpful in resolving this issue?
+      description: Do you have any additional information or context that you think will be helpful in resolving this issue? Include the version of winget you are running.
   - type: dropdown
     id: psversion
     attributes:
