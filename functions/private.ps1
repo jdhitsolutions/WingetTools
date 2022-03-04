@@ -3,38 +3,85 @@
 function _convert {
     [cmdletbinding()]
     Param(
-        [Parameter(ValueFromPipeline)]
+        [Parameter(Mandatory)]
         [object]$Package
     )
     Begin {
         Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Processing package data"
         $hash = [ordered]@{PSTypename = "WGPackage" }
-        [regex]$rxname = "(?<=Found\s).*(?=\s\[)"
+        #need to take non-English results into account Issue #1
+        #[regex]$rxFound = "(?<=\s).*\]"
+        [regex]$rxname = "(?<=\w\s).*(?=\s\[[\w\.]+\])" #".*(?=\s\[[\w\.]+\])"
+        #"(?<=Found\s).*(?=\s\[)"
         [regex]$rxID = "(?<=\s\[).*(?=\])"
-        [regex]$rxansi = "$([char]0x1b)\[96m"
+        #it is possible the ANSI scheme might not be green, so be more generic
+        [regex]$rxansi = "$([char]0x1b)\[(\w+;)"
+
+        #a hashtable to define properties from the winget show output. The value should be the line number
+        $propertyHash = [ordered]@{
+            NameID           = 0
+            Version          = 1
+            Publisher        = 2
+            PublisherURL     = 3
+            PublisherSupport = 4
+            Author           = 5
+            Moniker          = 6
+            Description      = 7
+            Homepage         = 8
+        }
     }
     Process {
-        $found = $package | Where-Object { $_ -match "^Found" }
-        if ($found) {
-            Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] $Found"
-            $pkgname = $rxname.Match($found).value
-            $pkgid = $rxID.match($found).value
+        $global:wp = $package
+        Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Package length is $($Package.Length)"
+        #7 Feb 2022 Need to take non-English results into account. Issue #1.
+        if ($package.length -gt 1) {
+
+            #parse the data into a list
+            $data = _parseShowData $package
+            $pkgname = $rxname.Match($data[0]).value
+            Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Processing $pkgname"
+            $pkgid = $rxID.match($data[0]).value
+
             #strip off ANSI
-            Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Adding Name $pkgname"
+            Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Adding Name: $pkgname"
             $hash.Add("Name", $rxansi.Replace($pkgname, ""))
-            Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Adding ID $pkgid"
+            Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Adding ID: $pkgid"
             $hash.Add("ID", $rxansi.replace($pkgid, ""))
+
+            #add remaining properties
+            $propertyHash.GetEnumerator() | Select-Object -Skip 1 | ForEach-Object {
+                $propName = $_.Key
+                $propValue = ($data.item($_.value) -split ":", 2)[1].trim()
+                $hash.Add($propName, $propValue)
+            }
+
+        } #if found
+        else {
+            Write-Warning "Failed to find a matching package. $package"
         }
-        #filter out blanks
-        ($package | Where-Object { $_ -match "\w+:(\s)?\w+" }).foreach( {
-                $split = $_.split(":", 2)
-                $hash.add($split[0].trim(), $split[1].trim())
-            })
-    }
+
+    }  #process
     End {
         Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Creating object"
-
-        [pscustomobject]$hash
+        if ($hash) {
+            [pscustomobject]$hash
+        }
 
     }
 } #convert
+
+#parse the winget output into a list object
+Function _parseShowData {
+    [cmdletbinding()]
+    Param ([string[]]$PackageData)
+
+    $list = [System.Collections.Generic.list[string]]::new()
+    $list.add($packageData[0])
+    for ($i = 1; $i -lt $packagedata.count; $i++) {
+        if ($PackageData[$i] -match ":\s\w+") {
+            $list.add($PackageData[$i].trim())
+        }
+    }
+    #winget doesn't always return the exact data for every package,
+    $list
+}

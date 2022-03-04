@@ -39,7 +39,7 @@ Get-WGPackage [-InputObject <String[]>] [-Source <String>] [<CommonParameters>]
 
 ## DESCRIPTION
 
-This command is a PowerShell wrapper aroung winget.cmd that will get a package and create an object you can use in PowerShell.
+This command is a PowerShell wrapper aroung winget.cmd that will get a package and create an object you can use in PowerShell. The
 
 ## EXAMPLES
 
@@ -60,27 +60,25 @@ Get a package by its name.
 ### Example 2
 
 ```powershell
-PS C:\> get-wgpackage -id "Microsoft.Powershell.Preview" | Select-object *
+PS C:\> get-wgpackage -id "Microsoft.Powershell.Preview" | Select-Object *
 
-Name         : PowerShell Preview
-ID           : Microsoft.PowerShell.Preview
-Version      : 7.2.0.9
-Publisher    : Microsoft Corporation
-Moniker      : pwsh-preview
-Description  : PowerShell is a cross-platform (Windows, Linux, and macOS)
-               automation and configuration tool/framework that works well with
-               your existing tools and is optimized for dealing with structured
-               data (e.g. JSON, CSV, XML, etc.), REST APIs, and object models.
-               It includes a command-line shell, an associated scripting
-               language and a framework for processing cmdlets.
-Homepage     : https://microsoft.com/PowerShell
-License      : MIT
-License Url  : https://github.com/PowerShell/PowerShell/blob/master/LICENSE.txt
-Type         : Msi
-Locale       : en-US
-Download Url : https://github.com/PowerShell/PowerShell/releases/download/v7.2.0
-               -preview.9/PowerShell-7.2.0-preview.9-win-x64.msi
-SHA256       : 380add7b04a0ab02eaebd2a761ddc14eee10aea1f6311ede79849fc68d765531
+Name             : PowerShell Preview
+ID               : Microsoft.PowerShell.Preview
+Version          : 7.3.0-preview.1
+Publisher        : Microsoft Corporation
+PublisherURL     : pwsh-preview
+PublisherSupport : PowerShell is a cross-platform (Windows, Linux, and macOS)
+                   automation and configuration tool/framework that works well
+                   with your existing tools and is optimized for dealing with
+                   structured data (e.g. JSON, CSV, XML, etc.), REST APIs, and
+                   object models. It includes a command-line shell, an
+                   associated scripting language and a framework for processing
+                   cmdlets.
+Author           : https://microsoft.com/PowerShell
+Moniker          : MIT
+Description      : https://github.com/PowerShell/PowerShell/blob/master/LICENSE.
+                   txt
+Homepage         : Msi
 ```
 
 The output is a rich object.

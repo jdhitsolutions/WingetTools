@@ -1,3 +1,11 @@
+<#
+As was made evident by Issue #1, Winget output is not always in English, and
+not every property is returned from the Winget show command. I think the best
+course of action is to turn the raw winget data into a list object and then
+use the Find() method to find specific values like Version,Description, and Moniker.
+
+However there is still an issue of what to do with non-English results.
+#>
 Function Get-WGPackage {
     [cmdletbinding(DefaultParameterSetName = "name")]
     [OutputType("WGPackage")]
@@ -103,7 +111,7 @@ Function Get-WGPackage {
         elseif ($data) {
             Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Converting winget data"
             $data | Out-String | Write-Verbose
-            $data | _convert
+            _convert $data
         } #else
 
     } #process
