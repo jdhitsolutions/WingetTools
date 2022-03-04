@@ -2,7 +2,7 @@
 
 [![PSGallery Version](https://img.shields.io/powershellgallery/v/WingetTools.png?style=for-the-badge&label=PowerShell%20Gallery)](https://www.powershellgallery.com/packages/WingetTools/) [![PSGallery Downloads](https://img.shields.io/powershellgallery/dt/WingetTools.png?style=for-the-badge&label=Downloads)](https://www.powershellgallery.com/packages/WingetTools/)
 
-Install this module from the PowerShell Gallery. It should work Windows PowerShell and PowerShell 7.x.
+Install this module from the PowerShell Gallery. It should work in Windows PowerShell 5.1 and PowerShell 7.x.
 
 ```powershell
 Install-Module WingetTools

@@ -1,5 +1,12 @@
 # Changelog for WingetTools
 
+## v1.1.0
+
++ Fixed bug in `Get-WGPackage` to better handle non-English systems. [Issue #1](https://github.com/jdhitsolutions/WingetTools/issues/1)
++ Improved parsing and regular expression matching to better process results. [Issue #2](https://github.com/jdhitsolutions/WingetTools/issues/2)
++ help updates
++ Minor updates to `README.md`.
+
 ## v1.0.0
 
 + Fixed bug with `Get-WGUpgrade` that had bad formatting when running the command either first thing in the day, or when some sort of caching was getting cleared.

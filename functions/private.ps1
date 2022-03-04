@@ -11,7 +11,7 @@ function _convert {
         $hash = [ordered]@{PSTypename = "WGPackage" }
         #need to take non-English results into account Issue #1
         #[regex]$rxFound = "(?<=\s).*\]"
-        [regex]$rxname = "(?<=\w\s).*(?=\s\[[\w\.]+\])" #".*(?=\s\[[\w\.]+\])"
+        [regex]$rxname = "(?<=\w\s).*(?=\s\[[\S\.]+\])" #".*(?=\s\[[\w\.]+\])"
         #"(?<=Found\s).*(?=\s\[)"
         [regex]$rxID = "(?<=\s\[).*(?=\])"
         #it is possible the ANSI scheme might not be green, so be more generic
@@ -29,15 +29,18 @@ function _convert {
             Description      = 7
             Homepage         = 8
         }
+
     }
     Process {
-        $global:wp = $package
+        # uncomment for debugging and development
+        #$global:wp = $package
         Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Package length is $($Package.Length)"
         #7 Feb 2022 Need to take non-English results into account. Issue #1.
         if ($package.length -gt 1) {
 
             #parse the data into a list
             $data = _parseShowData $package
+
             $pkgname = $rxname.Match($data[0]).value
             Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Processing $pkgname"
             $pkgid = $rxID.match($data[0]).value
@@ -49,11 +52,32 @@ function _convert {
             $hash.Add("ID", $rxansi.replace($pkgid, ""))
 
             #add remaining properties
-            $propertyHash.GetEnumerator() | Select-Object -Skip 1 | ForEach-Object {
-                $propName = $_.Key
-                $propValue = ($data.item($_.value) -split ":", 2)[1].trim()
-                $hash.Add($propName, $propValue)
+
+            #revised for Issue #2
+            $propertyHash.GetEnumerator() | Select-Object -skip `1 | foreach-Object {
+                $key = $_.key
+                $find = $data.Where({$_ -match "$($key):"})
+                if ($find) {
+                    $value = $find.split("$($key):")[1].trim()
+                }
+                else {
+                    $value = $null
+                }
+                $hash.Add($key,$Value)
             }
+            <#
+            $propertyHash.GetEnumerator() | Select-Object -Skip 1 | ForEach-Object {
+                Try {
+                    $propName = $_.Key
+                    $propValue = ($data.item($_.value) -split ":", 2)[1].trim()
+                    $hash.Add($propName, $propValue)
+                }
+                Catch {
+                    Write-Warning "Failed to parse $propName for $pkgName"
+                    $global:d = $data
+                }
+            #>
+
 
         } #if found
         else {
@@ -66,7 +90,6 @@ function _convert {
         if ($hash) {
             [pscustomobject]$hash
         }
-
     }
 } #convert
 

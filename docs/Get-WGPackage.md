@@ -60,7 +60,7 @@ Get a package by its name.
 ### Example 2
 
 ```powershell
-PS C:\> get-wgpackage -id "Microsoft.Powershell.Preview" | Select-Object *
+PS C:\> Get-WGPackage -id "Microsoft.Powershell.Preview" | Select-Object *
 
 Name             : PowerShell Preview
 ID               : Microsoft.PowerShell.Preview
