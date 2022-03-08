@@ -10,6 +10,8 @@ Install-Module WingetTools
 
 The WingetTools module is a PowerShell wrapper around the winget command-line tool which is Microsoft's latest package manager and installer. Winget is a command-line tool, not a PowerShell command. The commands in the WingetTools module are designed to make using winget a little more PowerShell friendly.
 
+__*NOTE:*__ The current version of this module has been tested with winget version `1.2.10271`. If you have an older version, some commands in this module may not work.
+
 ## [Install-WinGet](docs/Install-Winget.md)
 
 Until winget is publically available in the Microsoft Store, you can download and install the latest version from Github. This command __*must be run in a Windows PowerShell session*__ in Windows 10 or Windows 11. The package requires the DesktopAppInstaller package. If it isn't found, it will be downloaded and installed.

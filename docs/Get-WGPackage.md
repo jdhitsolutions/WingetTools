@@ -46,11 +46,11 @@ This command is a PowerShell wrapper aroung winget.cmd that will get a package a
 ### Example 1
 
 ```powershell
-PS C:\> get-wgpackage -name "Foxit PDF Reader"
+PS C:\> Get-WGPackage -name "Foxit PDF Reader"
 
 Name             ID                Version      Description
 ----             --                -------      -----------
-Foxit PDF Reader Foxit.FoxitReader 11.0.0.49893 Foxit is a powerful PDF reader
+Foxit PDF Reader Foxit.FoxitReader 11.2.1.53537 Foxit is a powerful PDF reader
                                                 for viewing, filling out forms
                                                 and more.
 ```
@@ -60,25 +60,24 @@ Get a package by its name.
 ### Example 2
 
 ```powershell
-PS C:\> Get-WGPackage -id "Microsoft.Powershell.Preview" | Select-Object *
+PS C:\> PS C:\> Get-WGPackage -id "Microsoft.Powershell.Preview" | Select-Object *
 
 Name             : PowerShell Preview
 ID               : Microsoft.PowerShell.Preview
-Version          : 7.3.0-preview.1
+Version          : 7.3.0.2
 Publisher        : Microsoft Corporation
-PublisherURL     : pwsh-preview
-PublisherSupport : PowerShell is a cross-platform (Windows, Linux, and macOS)
+PublisherURL     :
+PublisherSupport :
+Author           :
+Moniker          : pwsh-preview
+Description      : PowerShell is a cross-platform (Windows, Linux, and macOS)
                    automation and configuration tool/framework that works well
                    with your existing tools and is optimized for dealing with
                    structured data (e.g. JSON, CSV, XML, etc.), REST APIs, and
                    object models. It includes a command-line shell, an
                    associated scripting language and a framework for processing
                    cmdlets.
-Author           : https://microsoft.com/PowerShell
-Moniker          : MIT
-Description      : https://github.com/PowerShell/PowerShell/blob/master/LICENSE.
-                   txt
-Homepage         : Msi
+Homepage         : https://microsoft.com/PowerShell
 ```
 
 The output is a rich object.
@@ -88,10 +87,11 @@ The output is a rich object.
 ```powershell
 PS C:\> winget search --tag powerbi | get-wgpackage | Select-Object Name,ID,Version
 
+
 Name                      ID                  Version
 ----                      --                  -------
-Microsoft PowerBI Desktop Microsoft.PowerBI   2.96.1061.0
-DAX Studio                DaxStudio.DaxStudio 2.16.2.632
+DAX Studio                DaxStudio.DaxStudio 2.17.3.683
+Microsoft PowerBI Desktop Microsoft.PowerBI   2.102.845.0
 ```
 
 You can pipe the results of a winget search command to this function.

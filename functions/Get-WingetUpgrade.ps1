@@ -19,7 +19,10 @@ Function Get-WGUpgrade {
     Write-Verbose "Found $($up.count) available upgrades"
 
     #a regex pattern to parse the output
-    [regex]$r = "^(?<name>.*)\s+(?<id>\S+)\s+(?<version>\S+)\s+(?<available>\S+)\s+(?<source>\w+)$"
+    #it looks like winget version 1.2.10271 changed the output for the upgrade command
+    #Revising the regex pattern. Issue #3
+    [regex]$r = "^(?<name>.*)\s+(?<id>\S+)\s+(?<version>\S+)\s+(?<available>\S+)$"
+    #"^(?<name>.*)\s+(?<id>\S+)\s+(?<version>\S+)\s+(?<available>\S+)\s+(?<source>\w+)$"
     foreach ($item in $up) {
         $g = $r.Match($item).groups
         Write-Verbose "Processing package id $($g["id"].value)"

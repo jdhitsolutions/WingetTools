@@ -73,7 +73,7 @@ PS C:\> Get-WGUpgrade -id *toys
 
 Name                                      ID                  Version Available
 ----                                      --                  ------- ---------
-PowerToys (Preview)                       Microsoft.PowerToys 0.47.0  0.51.1
+PowerToys (Preview)                       Microsoft.PowerToys 0.55.1  0.56.1
 ```
 
 Get upgrades by ID.

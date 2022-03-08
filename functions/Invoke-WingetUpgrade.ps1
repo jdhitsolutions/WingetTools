@@ -29,7 +29,12 @@ Function Invoke-WGUpgrade {
         if ($inputobject) {
             foreach ($item in $InputObject) {
                 if ($pscmdlet.ShouldProcess($item.id, "Upgrade from $($item.version) to $($item.Available)")) {
-                    winget upgrade --id $item.id --source $item.source --silent --accept-package-agreements --accept-source-agreements
+                    if ($item.source) {
+                        winget upgrade --id $item.id --source $item.source --silent --accept-package-agreements --accept-source-agreements
+                    }
+                    else {
+                        winget upgrade --id $item.id --silent --accept-package-agreements --accept-source-agreements
+                    }
                 }
             } #foreach
         }

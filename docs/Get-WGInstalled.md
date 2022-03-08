@@ -27,13 +27,16 @@ This command will get a list of all packages installed with winget. These will b
 
 ```powershell
 PS C:\> Get-WGInstalled
-Name             ID                Version      Description
-----             --                -------      -----------
-Foxit PDF Reader Foxit.FoxitReader 11.0.0.49893 Foxit is a powerful PDF reader
-                                                for viewing, filling out forms
-                                                and more.
+
+Name                           ID                             Version
+----                           --                             -------
+Audacity                       Audacity.Audacity              3.1.3
+CCleaner                       Piriform.CCleaner              5.90
+Ubuntu                         Canonical.Ubuntu               2004.2021.825.0
 ...
 ```
+
+Actual output should also include the description.
 
 ## PARAMETERS
 
