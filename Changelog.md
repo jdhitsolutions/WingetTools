@@ -1,5 +1,11 @@
 # Changelog for WingetTools
 
+## v1.2.0
+
++ Revised regex pattern in `Get-WGUpgrade` that wasn't parsing data properly. This is most likely the fix for [Issue #3](https://github.com/jdhitsolutions/WingetTools/issues/3) and [Issue #4](https://github.com/jdhitsolutions/WingetTools/issues/4).
++ Updated `README.md`.
++ Help updates.
+
 ## v1.1.1
 
 + Fixed bug in `Get-WGUpgrade` that wasn't parsing data properly. [Issue #3](https://github.com/jdhitsolutions/WingetTools/issues/3)

@@ -5,7 +5,7 @@
 @{
 
     RootModule           = 'WingetTools.psm1'
-    ModuleVersion        = '1.1.1'
+    ModuleVersion        = '1.2.0'
     CompatiblePSEditions = @('Desktop', 'Core')
     GUID                 = '1130bb85-58d1-487d-9763-c38011f9613d'
     Author               = 'Jeff Hicks'
@@ -26,17 +26,14 @@
     'Get-WGInstalled','Invoke-WGUpgrade', 'Get-WGUpgrade','Test-WGVersion'
     AliasesToExport      = 'wglatest', 'iwg'
     PrivateData          = @{
-
         PSData = @{
             Tags         = @('winget', 'packagemanagement')
             LicenseUri   = 'https://github.com/jdhitsolutions/WingetTools/blob/main/LICENSE.txt'
             ProjectUri   = 'https://github.com/jdhitsolutions/WingetTools'
             # IconUri = ''
             ReleaseNotes = 'https://github.com/jdhitsolutions/WingetTools/blob/main/README.md'
+        }
 
-        } # End of PSData hashtable
-
-    } # End of PrivateData hashtable
-
+    }
 }
 

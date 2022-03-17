@@ -21,7 +21,10 @@ Function Get-WGUpgrade {
     #a regex pattern to parse the output
     #it looks like winget version 1.2.10271 changed the output for the upgrade command
     #Revising the regex pattern. Issue #3
-    [regex]$r = "^(?<name>.*)\s+(?<id>\S+)\s+(?<version>\S+)\s+(?<available>\S+)$"
+    #"^(?<name>.*)\s+(?<id>\S+)\s+(?<version>\S+)\s+(?<available>\S+)$"
+
+    #updated regex again for Issue #4
+    [regex]$r = "^(?<name>.*?(?=\s*\w+\.))\s+(?<id>\S+)\s+(?<version>\S+)\s+(?<available>\S+)"
     #"^(?<name>.*)\s+(?<id>\S+)\s+(?<version>\S+)\s+(?<available>\S+)\s+(?<source>\w+)$"
     foreach ($item in $up) {
         $g = $r.Match($item).groups
