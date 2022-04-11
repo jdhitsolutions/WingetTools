@@ -60,24 +60,23 @@ Get a package by its name.
 ### Example 2
 
 ```powershell
-PS C:\> PS C:\> Get-WGPackage -id "Microsoft.Powershell.Preview" | Select-Object *
+PS C:\> Get-WGPackage -id "Microsoft.Powershell.Preview" | Select-Object *
 
-Name             : PowerShell Preview
-ID               : Microsoft.PowerShell.Preview
-Version          : 7.3.0.2
-Publisher        : Microsoft Corporation
-PublisherURL     :
-PublisherSupport :
-Author           :
-Moniker          : pwsh-preview
-Description      : PowerShell is a cross-platform (Windows, Linux, and macOS)
-                   automation and configuration tool/framework that works well
-                   with your existing tools and is optimized for dealing with
-                   structured data (e.g. JSON, CSV, XML, etc.), REST APIs, and
-                   object models. It includes a command-line shell, an
-                   associated scripting language and a framework for processing
-                   cmdlets.
-Homepage         : https://microsoft.com/PowerShell
+Name                  : PowerShell Preview
+ID                    : Microsoft.PowerShell.Preview
+Version               : 7.3.0.3
+Publisher             : Microsoft Corporation
+Publisher URL         : https://github.com/PowerShell/PowerShell
+Publisher Support URL : https://github.com/PowerShell/PowerShell/issues
+Author                : Microsoft Corporation
+Moniker               : pwsh-preview
+Description           : PowerShell is a cross-platform (Windows, Linux, and
+                        macOS) automation and configuration tool/framework that
+                        works well with your existing tools and is optimized
+                        for dealing with structured data (e.g. JSON, CSV, XML,
+                        etc.), REST APIs, and object models.
+Homepage              : https://microsoft.com/PowerShell
+
 ```
 
 The output is a rich object.

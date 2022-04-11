@@ -19,15 +19,15 @@ function _convert {
 
         #a hashtable to define properties from the winget show output. The value should be the line number
         $propertyHash = [ordered]@{
-            NameID           = 0
-            Version          = 1
-            Publisher        = 2
-            PublisherURL     = 3
-            PublisherSupport = 4
-            Author           = 5
-            Moniker          = 6
-            Description      = 7
-            Homepage         = 8
+            NameID                  = 0
+            Version                 = 1
+            Publisher               = 2
+            'Publisher URL'         = 3
+            'Publisher Support URL' = 4
+            Author                  = 5
+            Moniker                 = 6
+            Description             = 7
+            Homepage                = 8
         }
 
     }
@@ -54,16 +54,18 @@ function _convert {
             #add remaining properties
 
             #revised for Issue #2
-            $propertyHash.GetEnumerator() | Select-Object -skip `1 | foreach-Object {
+            $propertyHash.GetEnumerator() | Select-Object -Skip 1 | ForEach-Object {
                 $key = $_.key
-                $find = $data.Where({$_ -match "$($key):"})
+                $find = $data.Where({ $_ -match "^($key):" })
                 if ($find) {
-                    $value = $find.split("$($key):")[1].trim()
+                    $value = ($find -split "^$($key):").trim()[1]
+                    #$find.split("$($key):")[1].trim()
                 }
                 else {
                     $value = $null
                 }
-                $hash.Add($key,$Value)
+                Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Adding $($key): $value"
+                $hash.Add($key, $Value)
             }
             <#
             $propertyHash.GetEnumerator() | Select-Object -Skip 1 | ForEach-Object {

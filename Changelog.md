@@ -1,5 +1,11 @@
 # Changelog for WingetTools
 
+## v1.3.0
+
++ Revised private functions used by `Get-WGPackage` that weren't parsing publisher data properly. [Issue #5](https://github.com/jdhitsolutions/WingetTools/issues/5)
++ Updated `README.md`.
++ Help updates.
+
 ## v1.2.0
 
 + Revised regex pattern in `Get-WGUpgrade` that wasn't parsing data properly. This is most likely the fix for [Issue #3](https://github.com/jdhitsolutions/WingetTools/issues/3) and [Issue #4](https://github.com/jdhitsolutions/WingetTools/issues/4).

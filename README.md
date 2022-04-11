@@ -39,20 +39,20 @@ This command is a PowerShell wrapper aroung winget.cmd that will get a package a
 The command has a default table view but the output object has other properties you might want to use.
 
 ```text
-Name         : GitHub CLI
-ID           : GitHub.cli
-Version      : 2.0.0
-Publisher    : GitHub, Inc.
-Author       : GitHub, Inc.
-Moniker      : gh
-Description  : GitHubs official command-line tool.
-Homepage     : https://github.com/cli/cli
-License      : MIT License
-License Url  : https://github.com/cli/cli/blob/HEAD/LICENSE
-Type         : Msi
-Locale       : en-US
-Download Url : https://github.com/cli/cli/releases/download/v2.0.0/gh_2.0.0_windows_amd64.msi
-SHA256       : 09761ebfcf1a294b79cf5c820d2a51edca9d5e515cbd1036c45862c462b36189
+Name                  : GitHub CLI
+ID                    : GitHub.cli
+Version               : 2.7.0
+Publisher             : GitHub, Inc.
+Publisher URL         : https://github.com
+Publisher Support URL : https://help.github.com/en
+Author                : GitHub, Inc.
+Moniker               : gh
+Description           : gh is GitHub on the command line. It brings pull
+                        requests, issues, and other GitHub concepts to the
+                        terminal next to where you are already working with git
+                        and your code.
+Homepage              : https://github.com/cli/cli
+
 ```
 
 The command typically gets a single package, but you can pipe a winget search command to it.

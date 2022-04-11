@@ -320,24 +320,22 @@ Foxit PDF Reader Foxit.FoxitReader 11.2.1.53537 Foxit is a powerful PDF reader
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 2 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; PS C:\&gt; Get-WGPackage -id "Microsoft.Powershell.Preview" | Select-Object *
+        <dev:code>PS C:\&gt; Get-WGPackage -id "Microsoft.Powershell.Preview" | Select-Object *
 
-Name             : PowerShell Preview
-ID               : Microsoft.PowerShell.Preview
-Version          : 7.3.0.2
-Publisher        : Microsoft Corporation
-PublisherURL     :
-PublisherSupport :
-Author           :
-Moniker          : pwsh-preview
-Description      : PowerShell is a cross-platform (Windows, Linux, and macOS)
-                   automation and configuration tool/framework that works well
-                   with your existing tools and is optimized for dealing with
-                   structured data (e.g. JSON, CSV, XML, etc.), REST APIs, and
-                   object models. It includes a command-line shell, an
-                   associated scripting language and a framework for processing
-                   cmdlets.
-Homepage         : https://microsoft.com/PowerShell</dev:code>
+Name                  : PowerShell Preview
+ID                    : Microsoft.PowerShell.Preview
+Version               : 7.3.0.3
+Publisher             : Microsoft Corporation
+Publisher URL         : https://github.com/PowerShell/PowerShell
+Publisher Support URL : https://github.com/PowerShell/PowerShell/issues
+Author                : Microsoft Corporation
+Moniker               : pwsh-preview
+Description           : PowerShell is a cross-platform (Windows, Linux, and
+                        macOS) automation and configuration tool/framework that
+                        works well with your existing tools and is optimized
+                        for dealing with structured data (e.g. JSON, CSV, XML,
+                        etc.), REST APIs, and object models.
+Homepage              : https://microsoft.com/PowerShell</dev:code>
         <dev:remarks>
           <maml:para>The output is a rich object.</maml:para>
         </dev:remarks>
