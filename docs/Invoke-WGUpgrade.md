@@ -16,7 +16,7 @@ Invoke a Winget upgrade on all available upgrades.
 ### id (Default)
 
 ```yaml
-Invoke-WGUpgrade [-WhatIf] [-Confirm] [<CommonParameters>]
+Invoke-WGUpgrade -ID <String> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### input
@@ -25,10 +25,10 @@ Invoke-WGUpgrade [-WhatIf] [-Confirm] [<CommonParameters>]
 Invoke-WGUpgrade [-InputObject <Object>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
-### ID
+### all
 
 ```yaml
-Invoke-WGUpgrade [-ID <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Invoke-WGUpgrade [-All] [-IncludeUnknown] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -57,8 +57,9 @@ Successfully installed
 
 ```powershell
 PS C:\> Get-WGUpgrade -Name p* | Invoke-WGUpgrade -WhatIf
-What if: Performing the operation "Upgrade from 3.1.2+06767 to 3.2.0+06857" on target "PrivateInternetAccess.PrivateInternetAcceΓÇª".
-What if: Performing the operation "Upgrade from 0.47.0 to 0.51.1" on target "Microsoft.PowerToys".
+What if: Performing the operation "Upgrade from 3.2.0+06857 to 3.3.1+06924" on target "PrivateInternetAccess.PrivateInternetAccess".
+What if: Performing the operation "Upgrade from 0.58.0 to 0.61.1" on target "Microsoft.PowerToys".
+What if: Performing the operation "Upgrade from 3.10.3 to 3.10.6" on target "Python.Python.3".
 ```
 
 You can pipe output from Get-WGUpgrade to this command.
@@ -70,6 +71,14 @@ PS C:\> Get-WGUpgrade | Out-GridView -OutputMode Multiple | Invoke-WGUpgrade
 ```
 
 Pipe the list of available upgrades to Out-Gridview where you can select items. Invoke-WGUpgrade will then install the selected upgrades.
+
+### Example 4
+
+```powershell
+PS C:\> Invoke-WGUpgrade -all
+```
+
+This is the equivalent of running winget upgrade --all.
 
 ## PARAMETERS
 
@@ -112,7 +121,7 @@ Specify a package by ID. Wildcards are permitted.
 
 ```yaml
 Type: String
-Parameter Sets: ID
+Parameter Sets: id
 Aliases:
 
 Required: True
@@ -138,6 +147,38 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
+### -All
+
+Update all packages.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: all
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -IncludeUnknown
+
+Upgrade packages even if their current version cannot be determined. This requires the -All parameter.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: all
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
@@ -148,7 +189,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.String
+### None
 
 ## NOTES
 
@@ -157,3 +198,5 @@ Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell
 ## RELATED LINKS
 
 [Get-WGUpgrade](Get-WGUpgrade.md)
+
+[Get-WGInstalled](Get-WGInstalled.md)

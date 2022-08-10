@@ -1,5 +1,18 @@
 # Changelog for WingetTools
 
+## v1.4.0
+
++ Added new parameters to `Invoke-WGUpgrade` [Issue #6](https://github.com/jdhitsolutions/WingetTools/issues/)
++ Major rewrite to `Get-WGInstalled`. Removed `Write-Progress` for better performance. Moved to using ThreadJobs to get online information in the background. Created a new object type, `WGInstalled`. **This could be a breaking change.**
++ Major rewrite to `Get-WGUpgrade`. **This could be a breaking change.**
++ Added `ThreadJob` as a required dependency.
++ Added a `Computername` property to output objects that reflect local installations.
++ Added types file `wginstalled.types.ps1xml`.
++ Added format file `wginstalled.format.ps1xml`.
++ Revised format file `wingetupgrade.format.ps1xml`
++ Updated `README.md`.
++ Help updates.
+
 ## v1.3.0
 
 + Revised private functions used by `Get-WGPackage` that weren't parsing publisher data properly. [Issue #5](https://github.com/jdhitsolutions/WingetTools/issues/5)

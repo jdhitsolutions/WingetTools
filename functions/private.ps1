@@ -29,7 +29,6 @@ function _convert {
             Description             = 7
             Homepage                = 8
         }
-
     }
     Process {
         # uncomment for debugging and development
@@ -79,13 +78,10 @@ function _convert {
                     $global:d = $data
                 }
             #>
-
-
         } #if found
         else {
             Write-Warning "Failed to find a matching package. $package"
         }
-
     }  #process
     End {
         Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Creating object"
@@ -109,4 +105,21 @@ Function _parseShowData {
     }
     #winget doesn't always return the exact data for every package,
     $list
+}
+Function _parseVersion {
+    #parse out odd characters from version strings
+    [cmdletbinding()]
+    Param([string]$VersionString)
+
+    if ($versionString -match "unknown") {
+        $out = $null
+    }
+    elseif ($VersionString -match "[\<\>]") {
+        $out = ($VersionString -replace $matches.values,"").Trim()
+    }
+    else {
+        $out = $VersionString.Trim()
+    }
+
+    $out
 }

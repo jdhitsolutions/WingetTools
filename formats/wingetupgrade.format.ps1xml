@@ -15,32 +15,33 @@ https://github.com/jdhitsolutions/PSScriptTools
         <TypeName>wingetUpgrade</TypeName>
       </ViewSelectedBy>
       <TableControl>
-        <!--Delete the AutoSize node if you want to use the defined widths.-->
-        <AutoSize />
+        <!--Delete the AutoSize node if you want to use the defined widths.
+        <AutoSize />-->
         <TableHeaders>
           <TableColumnHeader>
             <Label>Name</Label>
-            <Width>44</Width>
+            <Width>25</Width>
             <Alignment>left</Alignment>
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>ID</Label>
-            <Width>40</Width>
+            <Width>45</Width>
             <Alignment>left</Alignment>
           </TableColumnHeader>
           <TableColumnHeader>
-            <Label>Version</Label>
-            <Width>10</Width>
+            <Label>Installed</Label>
+            <Width>15</Width>
             <Alignment>left</Alignment>
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>Available</Label>
-            <Width>12</Width>
+            <Width>15</Width>
             <Alignment>left</Alignment>
           </TableColumnHeader>
         </TableHeaders>
         <TableRowEntries>
           <TableRowEntry>
+          <wrap/>
             <TableColumnItems>
               <!--
             By default the entries use property names, but you can replace them with scriptblocks.

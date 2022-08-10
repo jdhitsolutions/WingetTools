@@ -25,12 +25,13 @@ Function Test-WGVersion {
         else {
             Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Getting full result"
             [PSCustomObject]@{
-                PSTypeName = "WGVersion"
-                Installed  = $local
-                Online     = $remote
-                Update     = $remote -gt $local
-                Command    = (Get-Command winget).source
-                Link       = $note.link
+                PSTypeName   = "WGVersion"
+                Installed    = $local
+                Online       = $remote
+                Update       = $remote -gt $local
+                Command      = (Get-Command winget).source
+                Link         = $note.link
+                ComputerName = $env:COMPUTERNAME
             }
         }
 

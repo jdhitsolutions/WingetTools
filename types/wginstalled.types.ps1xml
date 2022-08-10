@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file was created with New-PSPropertySet from the
+PSTypeExtensionTools module which you can install from
+the PowerShell Gallery.
+-->
+<Types>
+  <Type>
+    <Name>WGInstalled</Name>
+    <Members>
+      <PropertySet>
+        <Name>version</Name>
+        <ReferencedProperties>
+          <Name>ID</Name>
+          <Name>InstalledVersion</Name>
+          <Name>OnlineVersion</Name>
+          <Name>Update</Name>
+        </ReferencedProperties>
+      </PropertySet>
+    </Members>
+  </Type>
+</Types>

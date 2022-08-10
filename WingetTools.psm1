@@ -6,6 +6,7 @@ class wingetUpgrade {
     [string]$Version
     [string]$Available
     [string]$Source = "winget"
+    [string]$Computername = $env:COMPUTERNAME
 
     wingetUpgrade($Name, $ID, $version, $available) {
         $this.name = $Name

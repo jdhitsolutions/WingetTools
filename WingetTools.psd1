@@ -5,7 +5,7 @@
 @{
 
     RootModule           = 'WingetTools.psm1'
-    ModuleVersion        = '1.3.0'
+    ModuleVersion        = '1.4.0'
     CompatiblePSEditions = @('Desktop', 'Core')
     GUID                 = '1130bb85-58d1-487d-9763-c38011f9613d'
     Author               = 'Jeff Hicks'
@@ -15,15 +15,17 @@
     PowerShellVersion    = '5.1'
 
     # Type files (.ps1xml) to be loaded when importing this module
-    # TypesToProcess = @()
+    TypesToProcess       = @("types\wginstalled.types.ps1xml")
+    RequiredModules      = @("ThreadJob")
 
     FormatsToProcess     = @(
         'formats\wgpackage.format.ps1xml',
         'formats\wgversion.format.ps1xml',
-        'formats\wingetupgrade.format.ps1xml'
-        )
+        'formats\wingetupgrade.format.ps1xml',
+        'formats\wginstalled.format.ps1xml'
+    )
     FunctionsToExport    = 'Get-WGPackage', 'Install-Winget', 'Get-WGReleaseNote',
-    'Get-WGInstalled','Invoke-WGUpgrade', 'Get-WGUpgrade','Test-WGVersion'
+    'Get-WGInstalled', 'Invoke-WGUpgrade', 'Get-WGUpgrade', 'Test-WGVersion'
     AliasesToExport      = 'wglatest', 'iwg'
     PrivateData          = @{
         PSData = @{
@@ -33,7 +35,6 @@
             # IconUri = ''
             ReleaseNotes = 'https://github.com/jdhitsolutions/WingetTools/blob/main/README.md'
         }
-
     }
 }
 
