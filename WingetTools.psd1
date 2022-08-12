@@ -5,7 +5,7 @@
 @{
 
     RootModule           = 'WingetTools.psm1'
-    ModuleVersion        = '1.4.0'
+    ModuleVersion        = '1.4.1'
     CompatiblePSEditions = @('Desktop', 'Core')
     GUID                 = '1130bb85-58d1-487d-9763-c38011f9613d'
     Author               = 'Jeff Hicks'
@@ -25,7 +25,7 @@
         'formats\wginstalled.format.ps1xml'
     )
     FunctionsToExport    = 'Get-WGPackage', 'Install-Winget', 'Get-WGReleaseNote',
-    'Get-WGInstalled', 'Invoke-WGUpgrade', 'Get-WGUpgrade', 'Test-WGVersion'
+    'Get-WGInstalled', 'Invoke-WGUpgrade', 'Get-WGUpgrade', 'Test-WGVersion' , 'Get-WingetPath'
     AliasesToExport      = 'wglatest', 'iwg'
     PrivateData          = @{
         PSData = @{

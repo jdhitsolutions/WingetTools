@@ -28,6 +28,7 @@ Function Invoke-WGUpgrade {
 
     Begin {
         Write-Verbose "Starting $($MyInvocation.MyCommand)"
+        $winget = Get-WingetPath
     } #begin
     Process {
         #set a flag indicating items were process in this script block
@@ -42,22 +43,22 @@ Function Invoke-WGUpgrade {
             foreach ($item in $InputObject) {
                 if ($pscmdlet.ShouldProcess($item.id, "Upgrade from $($item.version) to $($item.Available)")) {
                     if ($item.source) {
-                        winget upgrade --id $item.id --source $item.source --silent --accept-package-agreements --accept-source-agreements
+                        & $winget upgrade --id $item.id --source $item.source --silent --accept-package-agreements --accept-source-agreements
                     }
                     else {
-                        winget upgrade --id $item.id --silent --accept-package-agreements --accept-source-agreements
+                        & $winget upgrade --id $item.id --silent --accept-package-agreements --accept-source-agreements
                     }
                 }
             } #foreach
         }
         elseif ($pscmdlet.ParameterSetName -eq 'all' -AND $IncludeUnknown) {
             if ($pscmdlet.ShouldProcess("all installed and unknown packages")) {
-                winget upgrade --all --include-unknown --silent
+                & $winget upgrade --all --include-unknown --silent
             }
         }
         elseif ($pscmdlet.ParameterSetName -eq 'all') {
             if ($pscmdlet.ShouldProcess("all installed")) {
-                winget upgrade --all --silent
+                & $winget upgrade --all --silent
             }
         }
         else {

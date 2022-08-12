@@ -51,7 +51,8 @@ Function Get-WGPackage {
 
         Write-Verbose "[$((Get-Date).TimeofDay) BEGIN  ] Using source $source"
         Write-Verbose "[$((Get-Date).TimeofDay) BEGIN  ] Using Parameter set $($PSCmdlet.ParameterSetName)"
-        $cmdText = "winget show --source $source"
+        $winget = Get-WingetPath
+        $cmdText = "$winget show --source $source"
 
         Switch ($PSCmdlet.ParameterSetName) {
             "Name" {
