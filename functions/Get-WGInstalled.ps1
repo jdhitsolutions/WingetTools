@@ -10,11 +10,12 @@ Function Get-WGInstalled {
     Begin {
         Write-Verbose "[$((Get-Date).TimeofDay) BEGIN  ] Starting $($myinvocation.mycommand)"
         $tmpFile = "$env:temp\wgExport_{0}.json" -f (Get-Date -Format yyyymmdd)
+        $Winget = Get-WingetPath
     } #begin
 
     Process {
         Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Building list of packages with a winget source"
-        [void](winget export -s winget -o $tmpFile --include-versions)
+        [void](& $winget export -s winget -o $tmpFile --include-versions)
         if (Test-Path -Path $tmpFile) {
             #import the json file
             Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Importing temporary JSON data"
@@ -25,12 +26,13 @@ Function Get-WGInstalled {
             Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Found $count packages. Getting details."
 
             $jobList = [system.collections.generic.list[object]]::new()
+            $wingetPath = $winget
             foreach ($pkg in $json.Sources.packages) {
                 Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] $($pkg.PackageIdentifier)"
                 $i++
                 #9 August 2022 Using Threadjobs to get online package details for better scaling - JDH
                 $sb = {
-                    Param([object]$pkg, [string]$source)
+                    Param([object]$pkg, [string]$source, [string]$wingetPath)
                     Function _parseVersion {
                         #parse out odd characters from version strings
                         [cmdletbinding()]
@@ -49,7 +51,7 @@ Function Get-WGInstalled {
                     }
 
                     try {
-                        $show = winget show --id $pkg.PackageIdentifier --source $source
+                        $show = & $wingetPath show --id $pkg.PackageIdentifier --source $source
 
                         [regex]$rxname = "(?<=\w\s).*(?=\s\[[\S\.]+\])"
                         $installed = _parseVersion $pkg.version
@@ -75,7 +77,7 @@ Function Get-WGInstalled {
                     }
                 }
 
-                $joblist.add($(Start-ThreadJob -ScriptBlock $sb -ArgumentList $pkg, $source -Name wg))
+                $joblist.add($(Start-ThreadJob -ScriptBlock $sb -ArgumentList $pkg, $source, $wingetPath -Name wg))
 
             } #foreach pkg
 
