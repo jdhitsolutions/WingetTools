@@ -9,7 +9,7 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
-Get available winget upgrades.
+Erhalten Sie verfügbare Winget-Upgrades.
 
 ## SYNTAX
 
@@ -27,7 +27,7 @@ Get-WGUpgrade [-ID <String>] [<CommonParameters>]
 
 ## DESCRIPTION
 
-Use this command to get information about available winget upgrades. You can then manually decide what to upgrade using winget or pipe to Invoke-WingetUpgrade. The output will not show any packages where the installed version cannot be determined.
+Verwenden Sie diesen Befehl, um Informationen über verfügbare Winget-Upgrades zu erhalten. Sie können dann manuell entscheiden, was aktualisiert werden soll, indem Sie „winget“ oder „Pipe to Invoke-WingetUpgrade“ verwenden. Die Ausgabe zeigt keine Pakete an, bei denen die installierte Version nicht ermittelt werden kann.
 
 ## EXAMPLES
 
@@ -47,7 +47,7 @@ Notepad++                 Notepad++.Notepad++                           8.3.3   
 ...
 ```
 
-Get all available updates.
+Holen Sie sich alle verfügbaren Updates.
 
 ### Example 2
 
@@ -60,7 +60,7 @@ PowerToys (Preview)       Microsoft.PowerToys                           0.58.0  
 Python 3                  Python.Python.3                               3.10.3          3.10.6
 ```
 
-Get upgrades with a name that begins with P.
+Erhalten Sie Upgrades mit einem Namen, der mit P beginnt.
 
 ### Example 3
 
@@ -77,13 +77,13 @@ Microsoft Visual C++ 2015-2022 Redistributable (x86) 14.32.31326.0 14.32.31332.0
 
 ```
 
-Get upgrades by ID that starts with "micro". Note that the actual object property name, "Version", differs from the formatted column header of "Installed."
+Erhalten Sie Upgrades nach ID, die mit „micro“ beginnt. Beachten Sie, dass sich der eigentliche Objekteigenschaftsname „Version“ von der formatierten Spaltenüberschrift „Installiert“ unterscheidet.
 
 ## PARAMETERS
 
 ### -ID
 
-Specify a package by ID. Wildcards are permitted.
+Geben Sie ein Paket nach ID an. Wildcards sind erlaubt.
 
 ```yaml
 Type: String
@@ -99,7 +99,7 @@ Accept wildcard characters: False
 
 ### -Name
 
-Specify a package by name. Wildcards are permitted.
+Geben Sie ein Paket nach Namen an. Wildcards sind erlaubt.
 
 ```yaml
 Type: String

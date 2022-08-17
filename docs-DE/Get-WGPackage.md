@@ -9,7 +9,7 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
-Get information about a winget package
+Informieren Sie sich über ein Winget-Paket
 
 ## SYNTAX
 
@@ -39,7 +39,7 @@ Get-WGPackage [-InputObject <String[]>] [-Source <String>] [<CommonParameters>]
 
 ## DESCRIPTION
 
-This command is a PowerShell wrapper around winget.cmd that will get a package and create an object you can use in PowerShell.
+Dieser Befehl ist ein PowerShell-Wrapper um winget.command, der ein Paket abruft und ein Objekt erstellt, das Sie in PowerShell verwenden können.
 
 ## EXAMPLES
 
@@ -55,7 +55,7 @@ Foxit PDF Reader Foxit.FoxitReader 11.2.1.53537 Foxit is a powerful PDF reader
                                                 and more.
 ```
 
-Get a package by its name.
+Holen Sie sich ein Paket mit seinem Namen.
 
 ### Example 2
 
@@ -78,7 +78,7 @@ Description           : PowerShell is a cross-platform (Windows, Linux, and
 Homepage              : https://microsoft.com/PowerShell
 ```
 
-The output is a rich object.
+Die Ausgabe ist ein reichhaltiges Objekt.
 
 ### Example 3
 
@@ -92,7 +92,7 @@ DAX Studio                DaxStudio.DaxStudio 2.17.3.683
 Microsoft PowerBI Desktop Microsoft.PowerBI   2.102.845.0
 ```
 
-You can pipe the results of a winget search command to this function.
+Sie können die Ergebnisse eines Winget-Suchbefehls an diese Funktion weiterleiten.
 
 ## PARAMETERS
 
@@ -114,7 +114,7 @@ Accept wildcard characters: False
 
 ### -InputObject
 
-Pipe a winget search to this function.
+Leiten Sie eine Winget-Suche an diese Funktion weiter.
 
 ```yaml
 Type: String[]
@@ -130,7 +130,7 @@ Accept wildcard characters: False
 
 ### -Moniker
 
-Specify the winget moniker.
+Geben Sie den Winget-Moniker an.
 
 ```yaml
 Type: String
@@ -146,7 +146,7 @@ Accept wildcard characters: False
 
 ### -Name
 
-Specify the winget package name.
+Geben Sie den Winget-Paketnamen an.
 
 ```yaml
 Type: String
@@ -162,7 +162,7 @@ Accept wildcard characters: False
 
 ### -Source
 
-Specify a winget source. Currently, there is really only a single source but this might eventually change.
+Geben Sie eine Winget-Quelle an. Derzeit gibt es wirklich nur eine einzige Quelle, aber dies könnte sich irgendwann ändern.
 
 ```yaml
 Type: String

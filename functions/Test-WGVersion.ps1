@@ -34,7 +34,6 @@ Function Test-WGVersion {
                 ComputerName = $env:COMPUTERNAME
             }
         }
-
     } #process
 
     End {

@@ -19,7 +19,7 @@ Get-WGInstalled [[-Source] <String>] [<CommonParameters>]
 
 ## DESCRIPTION
 
-This command will get a list of all packages installed with winget. These will be packages with winget as the source. This command will have to be revised once more sources are available.
+Dieser Befehl ruft eine Liste aller Pakete ab, die mit winget installiert wurden. Dies sind Pakete, die von Winget bezogen werden. Dieser Befehl muss überarbeitet werden, wenn mehr Quellen verfügbar werden.
 
 ## EXAMPLES
 
@@ -48,7 +48,7 @@ CCleaner                  Piriform.CCleaner         6.00                CCleaner
 ...
 ```
 
-Because of the processing overhead, it is recommended that you save results to a variable.
+Aufgrund des Verarbeitungsaufwands wird empfohlen, die Ergebnisse in einer Variablen zu speichern.
 
 ### Example 2
 
@@ -66,13 +66,13 @@ Foxit.FoxitReader                           12.0.0.12394         12.0.1.12430   
 Git.Git                                     2.37.1               2.37.1               False
 ```
 
-There is a named table view you can use to quickly identify potential updates.
+Es gibt eine benannte Tabellenansicht, die Sie verwenden können, um potenzielle Aktualisierungen schnell zu identifizieren.
 
 ## PARAMETERS
 
 ### -Source
 
-Specify a winget source. Currently, there is really only a single source but this might eventually change.
+Geben Sie eine Winget-Quelle an. Derzeit gibt es wirklich nur eine einzige Quelle, aber dies könnte sich irgendwann ändern.
 
 ```yaml
 Type: String

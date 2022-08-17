@@ -1,8 +1,25 @@
 # Changelog for WingetTools
 
+## v1.5.0
+
++ Revised `Get-WGInstalled` to better handle non-English culture. [Issue #8](https://github.com/jdhitsolutions/WingetTools/issues/8)
++ Renamed `Get-WingetPath` to `Get-WGPath`.
++ Added a requirement for the `psyml` PowerShell module.
++ Added cultural localization for DE-DE to parse `winget` output.
++ Added help documention for de-DE.
++ Defined custom objects as PowerShell classes.
++ Renamed `wginstalled` property set to `versioninfo`.
++ Added default list formats for `wginstall` and `wgpackage` types.
++ Updated help.
++ Updated `README.md`.
+
+## v1.4.1
+
++ Update module to support running in SYSTEM context. [Pull request #7](https://github.com/jdhitsolutions/WingetTools/pull/7)
+
 ## v1.4.0
 
-+ Added new parameters to `Invoke-WGUpgrade` [Issue #6](https://github.com/jdhitsolutions/WingetTools/issues/)
++ Added new parameters to `Invoke-WGUpgrade` [Issue #6](https://github.com/jdhitsolutions/WingetTools/issues/6)
 + Major rewrite to `Get-WGInstalled`. Removed `Write-Progress` for better performance. Moved to using ThreadJobs to get online information in the background. Created a new object type, `WGInstalled`. **This could be a breaking change.**
 + Major rewrite to `Get-WGUpgrade`. **This could be a breaking change.**
 + Added `ThreadJob` as a required dependency.

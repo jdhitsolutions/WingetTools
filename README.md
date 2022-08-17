@@ -12,6 +12,8 @@ The WingetTools module is a PowerShell wrapper around the `winget` command-line 
 
 > **NOTE:** The current version of this module has been tested with winget version `1.3.2091`. If you have an older version, some commands in this module may not work as expected.
 
+Installing this module will also install the `ThreadJob` and [`psyml`](https://github.com/bitrut94/psyml) modules, which are dependencies.
+
 ## Background
 
 The `winget` utility was never designed with PowerShell in mind. Without going into the years-long discussion about the lack of PowerShell support, `winget` was designed for non-PowerShell audience. The application queries online sources for package information and writes output to the console. Many of the commands in this module resort to brute force parsing of the output and then turning that output into custom objects. As such, some commands may not perform as efficiently as one would like. But they work for now.
@@ -165,6 +167,17 @@ You can use the `-Quiet` parameter to return a Boolean result.
 ```dos
 PS C:\> Test-WGVersion -Quiet
 False
+```
+
+## Localization
+
+Beginning with version 1.5.0, I've attempted to handle localization issues. It appears that in some locations, the winget output is localized which throws off the regular expression patterns I originally used. I am now using localized data to parse the winget output and construct the custom objects.  Currently, the only supported culture is `de-DE`. The default will be `en-US`.
+
+If you encounter problems running module commands under a different culture, please post an issue. Include the output from these commands.
+
+```powershell
+winget show --id microsoft.powershell --source winget
+Get-Culture
 ```
 
 ## Issues

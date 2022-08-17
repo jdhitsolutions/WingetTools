@@ -37,7 +37,7 @@ Function Get-WGPackage {
             ValueFromPipeline,
             HelpMessage = "Pipe a winget search to this function"
             )]
-        [string[]]$InputObject,
+        [object[]]$InputObject,
 
         [Parameter(HelpMessage = "Specify a winget source")]
         [ValidateNotNullOrEmpty()]
@@ -50,8 +50,7 @@ Function Get-WGPackage {
         [regex]$rxIDAll = "(?<=\s)[\w-+]{3,}\.[\w-+]{3,}(\.[\w-+]{3,})?"
 
         Write-Verbose "[$((Get-Date).TimeofDay) BEGIN  ] Using source $source"
-        Write-Verbose "[$((Get-Date).TimeofDay) BEGIN  ] Using Parameter set $($PSCmdlet.ParameterSetName)"
-        $winget = Get-WingetPath
+        $winget = Get-WGPath
         $cmdText = "$winget show --source $source"
 
         Switch ($PSCmdlet.ParameterSetName) {
@@ -73,18 +72,26 @@ Function Get-WGPackage {
 
     } #begin
     Process {
+        Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Using Parameter set $($PSCmdlet.ParameterSetName)"
 
         if ($InputObject) {
-            Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Processing winget output"
+            Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Processing winget output by input"
             $data = $InputObject | Where-Object { $rxIDAll.IsMatch($InputObject) } |
             ForEach-Object {
                 $id = $rxIDAll.Match($_).Value
-                winget show --id $id --source $source
+                if ($id -match "\w+") {
+                    Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Show $id"
+                    &$winget show --id $id --source $source | Where-Object {$_ -notmatch "(\d+%|\d MB|\s+)$" -and $_.length -gt 0}
+                }
+                else {
+                    write-Warning $_
+                }
             }
+            Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Processed $($data.count) item(s)"
         }
         else {
             Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Invoking: $cmdtext"
-            $data = Invoke-Command -ScriptBlock $sb
+            $data = Invoke-Command -ScriptBlock $sb | Where-Object {$_ -notmatch "(\d+%|\d MB|\s+)$" -and $_.length -gt 0}
         }
 
         if ($data -match "Multiple apps found") {
@@ -93,12 +100,11 @@ Function Get-WGPackage {
             $IDs = $rxIDAll.Matches($data).value
 
             Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Processing $($IDS.count) packages"
-            foreach ($item in $ids) {
+            $out = foreach ($item in $ids) {
                 #get the exact package to avoid problems when there are duplicate names
                 Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Retrieving $item"
-                _convert (winget show -e $item)
+                _convert (&$winget show -e $item | Where-Object {$_ -notmatch "(\d+%|\d MB|\s+)$" -and $_.length -gt 0})
             }
-
         } #if multiple found
         elseif ($data -match "no package found") {
             if ($cmdText) {
@@ -112,8 +118,11 @@ Function Get-WGPackage {
         elseif ($data) {
             Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Converting winget data"
             $data | Out-String | Write-Verbose
-            _convert $data
+            $out = _convert $data
         } #else
+
+        #insert the typename
+        $out
 
     } #process
     End {

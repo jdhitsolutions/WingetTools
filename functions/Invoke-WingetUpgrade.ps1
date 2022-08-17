@@ -28,7 +28,7 @@ Function Invoke-WGUpgrade {
 
     Begin {
         Write-Verbose "Starting $($MyInvocation.MyCommand)"
-        $winget = Get-WingetPath
+        $winget = Get-WGPath
     } #begin
     Process {
         #set a flag indicating items were process in this script block

@@ -1,20 +1,40 @@
 #region define a class
 
-class wingetUpgrade {
+Class wgBase {
     [string]$Name
     [string]$ID
     [string]$Version
-    [string]$Available
     [string]$Source = "winget"
     [string]$Computername = $env:COMPUTERNAME
+}
 
-    wingetUpgrade($Name, $ID, $version, $available) {
+Class wgPackage:wgBase {
+    [string]$Moniker
+    [string]$Description
+    [string]$Author
+    [string]$Publisher
+    [string]$PublisherUrl
+    [string]$PublisherSupportUrl
+    [string]$Homepage
+}
+
+Class wgInstalled:wgPackage {
+    [string]$InstalledVersion
+}
+
+class wgUpgrade:wgBase {
+    [string]$Available
+    [string]$Source = "winget"
+
+    wgUpgrade($Name, $ID, $version, $available) {
         $this.name = $Name
         $this.ID = $ID
         $this.version = $version
         $this.available = $available
     }
 }
+
+Update-TypeData -TypeName wgInstalled -MemberType AliasProperty -MemberName OnlineVersion -Value Version -force
 
 #region Main
 
@@ -25,4 +45,14 @@ ForEach-Object { . $_.Fullname }
 
 #endregion
 
+#load localized data
+Try {
+    Import-LocalizedData -BindingVariable localized -FileName localized.psd1 -ErrorAction Stop
+
+    # write-host "Imported localized data for $(Get-Culture)" -ForegroundColor green
+    # $localized | out-string | write-host -ForegroundColor green
+}
+Catch {
+    Import-LocalizedData -BindingVariable localized -FileName localized.psd1 -UICulture en-US
+}
 

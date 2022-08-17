@@ -1,0 +1,67 @@
+# WingetTools
+
+## about_WingetTools
+
+# KURZE BESCHREIBUNG
+
+Das Wingettools-Modul ist ein PowerShell-Wrapper um das Winget-Befehlszeilentool.
+
+# LANGE BESCHREIBUNG
+
+Das Befehlszeilentool winget ist der neueste Paketmanager und Installer von Microsoft. Es ist ein Befehlszeilentool, kein PowerShell-Befehl. Die Befehle im WingetTools-Modul wurden entwickelt, um die Verwendung von winget etwas PowerShell-freundlicher zu gestalten.
+
+## Install-WinGet
+
+Bis winget öffentlich im Microsoft Store verfügbar ist, können Sie die neueste Version von Github herunterladen und installieren. Dieser Befehl muss in einer Windows PowerShell-Sitzung in Windows 10 oder Windows 11 ausgeführt werden. Das Paket erfordert die DesktopAppInstaller-Paket. Wenn es nicht gefunden wird, wird es heruntergeladen und installiert.
+
+## Get-WGReleaseNote
+
+Dieser Befehl fragt das Github-Repository nach dem Winget-Projekt ab und zeigt die Versionshinweise für die neueste Version an. Sie können es auch im Markdown-Format anzeigen oder zur Online-Version gehen.
+
+## Get-WGPackage
+
+Dieser Befehl ist ein PowerShell-Wrapper um winget.cmd, der ein Paket abruft und ein Objekt erstellt, das Sie in PowerShell verwenden können. Das Objekt hat eine standardmäßige Tabellenansicht, aber das Objekt hat andere Eigenschaften.
+
+    Name: GitHub-CLI
+    ID: GitHub.cli
+    Version: 2.0.0
+    Herausgeber : GitHub, Inc.
+    Autor: GitHub, Inc.
+    Spitzname: gh
+    Beschreibung : Offizielles Befehlszeilentool von GitHubs.
+    Homepage: https://github.com/cli/cli
+    Lizenz: MIT-Lizenz
+    Lizenz-URL: https://github.com/cli/cli/blob/HEAD/LICENSE
+    Typ: Msi
+    Gebietsschema: en-US
+    Download-URL: https://github.com/cli/cli/releases/download/v2.0.0/gh_2.0.0_windows_amd64.msi
+    SHA256: 09761ebfcf1a294b79cf5c820d2a51edca9d5e515cbd1036c45862c462b36189
+
+Wenn Sie Details zu mehreren Paketen abrufen möchten, leiten Sie einen Winget-Suchbefehl an diesen PowerShell-Befehl weiter.
+
+    winget search --tag github --source winget | Get-WGPackage
+
+## Get-WGInstalliert
+
+Dieser Befehl ruft eine Liste aller Pakete ab, die mit winget installiert wurden. Dies sind Pakete mit Winget als Quelle.
+
+## Get-WGUpgrade
+
+Dieser Befehl erleichtert das Abrufen von PowerShell-Objekten, die Upgradepakete widerspiegeln. Der Befehl schreibt ein benutzerdefiniertes Objekt in die Pipeline, das standardmäßig als Tabelle formatiert ist. Sie können diesen Befehl verwenden, um in einer ForEach-Schleife zu winget.exe zu leiten, um ein Upgrade durchzuführen, oder zu Invoke-WGUpgrade, das -WhatIf unterstützt.
+
+## Invoke-WGUpgrade
+
+Dieser Befehl ist ein Wrapper um die Winget-Upgrade-Option. Das Upgrade erfolgt mithilfe der Paket-ID und der Optionen für die unbeaufsichtigte Installation. Das Upgrade akzeptiert auch alle Lizenzen und Vereinbarungen.
+
+# FEHLERBEHEBUNG HINWEIS
+
+Wenn es Probleme mit Befehlen in diesem Modul gibt, versuchen Sie, den Befehl winget direkt auszuführen. Melden Sie Probleme im Github-Repository des Moduls unter https://github.com/jdhitsolutions/WingetTools/issues.
+
+# SIEHE AUCH
+
+Besuchen Sie das winget Github-Repository für weitere Informationen über das Projekt unter https://github.com/microsoft/winget-cli.
+
+# SCHLÜSSELWÖRTER
+
+- Flügel
+- Pakete

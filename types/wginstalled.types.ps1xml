@@ -9,7 +9,7 @@ the PowerShell Gallery.
     <Name>WGInstalled</Name>
     <Members>
       <PropertySet>
-        <Name>version</Name>
+        <Name>versionInfo</Name>
         <ReferencedProperties>
           <Name>ID</Name>
           <Name>InstalledVersion</Name>

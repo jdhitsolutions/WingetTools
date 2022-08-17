@@ -9,7 +9,7 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
-Invoke a Winget upgrade on all available upgrades.
+Rufen Sie ein Winget-Upgrade für alle verfügbaren Upgrades auf.
 
 ## SYNTAX
 
@@ -33,9 +33,9 @@ Invoke-WGUpgrade [-All] [-IncludeUnknown] [-WhatIf] [-Confirm] [<CommonParameter
 
 ## DESCRIPTION
 
-This command is designed to make it easy to upgrade winget packages. The command will skip packages with unknown versions. The installation process accepts all licenses and agreements, and uses the silent winget option.
+Dieser Befehl wurde entwickelt, um das Upgrade von Winget-Paketen zu vereinfachen. Der Befehl überspringt Pakete mit unbekannten Versionen. Der Installationsprozess akzeptiert alle Lizenzen und Vereinbarungen und verwendet die Silent-Winget-Option.
 
-Be aware that winget may still encounter a problem attempting to invoke the update.
+Beachten Sie, dass winget beim Versuch, das Update aufzurufen, immer noch auf ein Problem stoßen kann.
 
 ## EXAMPLES
 
@@ -62,7 +62,7 @@ What if: Performing the operation "Upgrade from 0.58.0 to 0.61.1" on target "Mic
 What if: Performing the operation "Upgrade from 3.10.3 to 3.10.6" on target "Python.Python.3".
 ```
 
-You can pipe output from Get-WGUpgrade to this command.
+Sie können die Ausgabe von Get-WGUpgrade an diesen Befehl weiterleiten.
 
 ### Example 3
 
@@ -70,7 +70,7 @@ You can pipe output from Get-WGUpgrade to this command.
 PS C:\> Get-WGUpgrade | Out-GridView -OutputMode Multiple | Invoke-WGUpgrade
 ```
 
-Pipe the list of available upgrades to Out-Gridview where you can select items. Invoke-WGUpgrade will then install the selected upgrades.
+Leiten Sie die Liste der verfügbaren Upgrades an Out-Gridview weiter, wo Sie Elemente auswählen können. Invoke-WGUpgrade installiert dann die ausgewählten Upgrades.
 
 ### Example 4
 
@@ -78,13 +78,13 @@ Pipe the list of available upgrades to Out-Gridview where you can select items. 
 PS C:\> Invoke-WGUpgrade -all
 ```
 
-This is the equivalent of running winget upgrade --all.
+Dies ist das Äquivalent zum Ausführen von winget upgrade --all.
 
 ## PARAMETERS
 
 ### -Confirm
 
-Prompts you for confirmation before running the cmdlet.
+Fordert Sie zur Bestätigung auf, bevor das Cmdlet ausgeführt wird.
 
 ```yaml
 Type: SwitchParameter
@@ -100,8 +100,8 @@ Accept wildcard characters: False
 
 ### -WhatIf
 
-Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
+Zeigt, was passieren würde, wenn das Cmdlet ausgeführt wird.
+Das Cmdlet wird nicht ausgeführt.
 
 ```yaml
 Type: SwitchParameter
@@ -117,7 +117,7 @@ Accept wildcard characters: False
 
 ### -ID
 
-Specify a package by ID. Wildcards are permitted.
+Geben Sie ein Paket nach ID an. Wildcards sind erlaubt.
 
 ```yaml
 Type: String
@@ -133,7 +133,7 @@ Accept wildcard characters: False
 
 ### -InputObject
 
-Specify a wgUpgrade object.
+Geben Sie ein wgUpgrade-Objekt an.
 
 ```yaml
 Type: Object
@@ -165,7 +165,7 @@ Accept wildcard characters: False
 
 ### -IncludeUnknown
 
-Upgrade packages even if their current version cannot be determined. This requires the -All parameter.
+Aktualisieren Sie Pakete, auch wenn ihre aktuelle Version nicht ermittelt werden kann. Dies erfordert den Parameter -All.
 
 ```yaml
 Type: SwitchParameter

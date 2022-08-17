@@ -10,7 +10,7 @@ Function Get-WGInstalled {
     Begin {
         Write-Verbose "[$((Get-Date).TimeofDay) BEGIN  ] Starting $($myinvocation.mycommand)"
         $tmpFile = "$env:temp\wgExport_{0}.json" -f (Get-Date -Format yyyymmdd)
-        $Winget = Get-WingetPath
+        $Winget = Get-WGPath
     } #begin
 
     Process {
@@ -52,24 +52,7 @@ Function Get-WGInstalled {
 
                     try {
                         $show = & $wingetPath show --id $pkg.PackageIdentifier --source $source
-
-                        [regex]$rxname = "(?<=\w\s).*(?=\s\[[\S\.]+\])"
-                        $installed = _parseVersion $pkg.version
-                        $online = _parseVersion (($show | Select-String "Version:") -split "Version: ")[1].trim()
-
-                        @{
-                            Name             = $rxname.match($($show | Select-String "Found\s")).value
-                            ID               = $pkg.PackageIdentifier
-                            InstalledVersion = $installed
-                            OnlineVersion    = $online
-                            Publisher        = $(Try { (($show | Select-String "Publisher:") -split "Publisher: ")[1].trim() } Catch { $null })
-                            PublisherURL     = $(Try { (($show | Select-String "Publisher Url:") -split "Publisher Url: ")[1].trim() } Catch { $null })
-                            Author           = $(Try { (($show | Select-String "Author:") -split "Author: ")[1].trim() } Catch { $null })
-                            Moniker          = $(Try { (($show | Select-String "Moniker:") -split "Moniker: ")[1].trim() } Catch {$null })
-                            Description      = $(Try { (($show | Select-String "Description:") -split "Description: ")[1].trim() } Catch { $null })
-                            Homepage         = $(Try { (($show | Select-String "Homepage:") -split "Homepage: ")[1].trim() } Catch { $null })
-                            Source           = $Source
-                        } #output hash
+                        $pkg | Add-Member -MemberType NoteProperty -Name show -Value $show -PassThru -Force
                     } #Try
                     catch {
                         #$show | Out-String | Write-Host -fore red
@@ -87,22 +70,41 @@ Function Get-WGInstalled {
                 $joblist.FindAll({ $args[0].state -eq 'Completed' }) |
                 ForEach-Object {
                     #convert the job output to a defined object
-                    $r = $_ | Receive-Job
-                    [pscustomobject]@{
-                        PSTypeName       = "WGInstalled"
-                        Name             = $r.name
-                        ID               = $r.id
-                        InstalledVersion = $r.InstalledVersion
-                        OnlineVersion    = $r.OnlineVersion
-                        Publisher        = $r.Publisher
-                        PublisherUrl     = $r.PublisherURL
-                        Author           = $r.Author
-                        Moniker          = $r.Moniker
-                        Description      = $r.Description
-                        Homepage         = $r.Homepage
-                        Source           = $r.Source
-                        Computername     = $env:computername
-                    } #output object
+                    $jobresult = $_ | Receive-Job
+                    $show = $jobresult.show | Where-Object { $_ -notmatch "(\d+%|\d MB|\s+)$" -and $_.length -gt 0 }
+                    $show | Out-String | Write-Debug
+                    Try {
+                        $yml = $show.replace(" - ", " ") | Select-Object -Skip 1 | Where-Object { $_ -match "^(\s+)?(\b(\w+)\b).*:" } | ConvertFrom-Yaml -ErrorAction stop
+                    }
+                    Catch {
+                        Write-Warning "Failed to convert to YAML"
+                        $show | Out-String | Write-Warning
+                    }
+                    [regex]$rxname = "(?<name>(?<=\w\s).*)(?=\s\[(?<id>[\S\.]+)\])"
+                    $id = $jobresult.PackageIdentifier
+                    #$rxname.match($show[0]).groups["id"].value
+                    Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Getting installed version for $id"
+                    # 8/16/2022 Need to account for multiple versions JDH
+                    $installed = _parseVersion $jobresult.version
+                    #($json.sources.packages.where({$_.packageIdentifier -eq $id}).version)
+                    $online = _parseVersion (($show | Select-String "$($localized.version):") -split "$($localized.version): ")[1].trim()
+                    $out = [wginstalled]::new()
+
+                    $out.Name = $rxname.match($show[0]).groups["name"].value
+                    $out.ID = $id
+                    $out.InstalledVersion = $installed
+                    $out.Version = $online
+                    $out.Publisher = $yml.$($localized.Publisher)
+                    $out.PublisherUrl = $yml.$($localized.PublisherURL)
+                    $out.PublisherSupportUrl = $yml.$($localized.PublisherSupportUrl)
+                    $out.Author = $yml.$($localized.Author)
+                    $out.Moniker = $yml.$($localized.Moniker)
+                    $out.Description = $yml.$($localized.Description)
+                    $out.Homepage = $yml.$($Localized.homepage)
+                    $out.Source = $Source
+                    $out
+
+
                     [void]$joblist.remove($_)
                 }
             } Until ($jobList.count -eq 0)
@@ -110,17 +112,16 @@ Function Get-WGInstalled {
         else {
             Write-Warning "There was a problem getting a list of installed packages."
         }
-
     } #process
 
     End {
         if (Test-Path -Path $tmpFile) {
             #always remove the temp file
-            Remove-Item $tmpFile -whatif:$false
+            Remove-Item $tmpFile -WhatIf:$false
         }
         if (Get-Job -Name wg) {
             #always remove the threadjob
-            Remove-Job -Name wg -Force -whatif:$false
+            Remove-Job -Name wg -Force -WhatIf:$false
         }
         Write-Verbose "[$((Get-Date).TimeofDay) END    ] Ending $($myinvocation.mycommand)"
 

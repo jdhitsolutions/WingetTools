@@ -1,6 +1,7 @@
 
 #define a private function to convert the output
-function _convert {
+
+Function _convert {
     [cmdletbinding()]
     Param(
         [Parameter(Mandatory)]
@@ -8,88 +9,54 @@ function _convert {
     )
     Begin {
         Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Processing package data"
-        $hash = [ordered]@{PSTypename = "WGPackage" }
-        #need to take non-English results into account Issue #1
-        #[regex]$rxFound = "(?<=\s).*\]"
-        [regex]$rxname = "(?<=\w\s).*(?=\s\[[\S\.]+\])" #".*(?=\s\[[\w\.]+\])"
-        #"(?<=Found\s).*(?=\s\[)"
-        [regex]$rxID = "(?<=\s\[).*(?=\])"
-        #it is possible the ANSI scheme might not be green, so be more generic
-        [regex]$rxansi = "$([char]0x1b)\[(\w+;)"
-
-        #a hashtable to define properties from the winget show output. The value should be the line number
-        $propertyHash = [ordered]@{
-            NameID                  = 0
-            Version                 = 1
-            Publisher               = 2
-            'Publisher URL'         = 3
-            'Publisher Support URL' = 4
-            Author                  = 5
-            Moniker                 = 6
-            Description             = 7
-            Homepage                = 8
-        }
     }
     Process {
-        # uncomment for debugging and development
-        #$global:wp = $package
-        Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Package length is $($Package.Length)"
-        #7 Feb 2022 Need to take non-English results into account. Issue #1.
-        if ($package.length -gt 1) {
-
-            #parse the data into a list
-            $data = _parseShowData $package
-
-            $pkgname = $rxname.Match($data[0]).value
-            Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Processing $pkgname"
-            $pkgid = $rxID.match($data[0]).value
-
-            #strip off ANSI
-            Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Adding Name: $pkgname"
-            $hash.Add("Name", $rxansi.Replace($pkgname, ""))
-            Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Adding ID: $pkgid"
-            $hash.Add("ID", $rxansi.replace($pkgid, ""))
-
-            #add remaining properties
-
-            #revised for Issue #2
-            $propertyHash.GetEnumerator() | Select-Object -Skip 1 | ForEach-Object {
-                $key = $_.key
-                $find = $data.Where({ $_ -match "^($key):" })
-                if ($find) {
-                    $value = ($find -split "^$($key):").trim()[1]
-                    #$find.split("$($key):")[1].trim()
-                }
-                else {
-                    $value = $null
-                }
-                Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Adding $($key): $value"
-                $hash.Add($key, $Value)
-            }
-            <#
-            $propertyHash.GetEnumerator() | Select-Object -Skip 1 | ForEach-Object {
-                Try {
-                    $propName = $_.Key
-                    $propValue = ($data.item($_.value) -split ":", 2)[1].trim()
-                    $hash.Add($propName, $propValue)
-                }
-                Catch {
-                    Write-Warning "Failed to parse $propName for $pkgName"
-                    $global:d = $data
-                }
-            #>
-        } #if found
-        else {
-            Write-Warning "Failed to find a matching package. $package"
+        Try {
+            Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Converting to YAML"
+            $yml = $package.replace(" - ", " ") | Select-Object -Skip 1 | Where-Object { $_ -match "^(\s+)?(\b(\w+)\b).*:" } | ConvertFrom-Yaml -ErrorAction stop
         }
-    }  #process
-    End {
-        Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Creating object"
-        if ($hash) {
-            [pscustomobject]$hash
+        Catch {
+            Write-Warning "Failed to convert to YAML. $($_.exception.message)"
+            $package | Out-String | Write-Warning
         }
+
+        [regex]$rxname = "(?<name>(?<=\w\s).*)(?=\s\[(?<id>[\S\.]+)\])"
+        $online = _parseVersion $yml.$($localized.version)
+
+        $out = [wgPackage]::new()
+        $out.Name                = $rxname.match($package[0]).groups["name"].value
+        $out.ID                  = $rxname.match($package[0]).groups["id"].value
+        $out.Version             = $online
+        $out.Publisher           = $yml.$($localized.Publisher)
+        $out.PublisherUrl        = $yml.$($localized.PublisherURL)
+        $out.PublisherSupportUrl = $yml.$($localized.PublisherSupportUrl)
+        $out.Author              = $yml.$($localized.Author)
+        $out.Moniker             = $yml.$($localized.Moniker)
+        $out.Description         = $yml.$($localized.Description)
+        $out.Homepage            = $yml.$($Localized.homepage)
+        $out.Source              = $Source
+
+        $out
+       <#  [pscustomobject]@{
+            Name                = $rxname.match($package[0]).groups["name"].value
+            ID                  = $rxname.match($package[0]).groups["id"].value
+            Version             = $online
+            Publisher           = $yml.$($localized.Publisher)
+            PublisherUrl        = $yml.$($localized.PublisherURL)
+            PublisherSupportUrl = $yml.$($localized.PublisherSupportUrl)
+            Author              = $yml.$($localized.Author)
+            Moniker             = $yml.$($localized.Moniker)
+            Description         = $yml.$($localized.Description)
+            Homepage            = $yml.$($Localized.homepage)
+            Source              = $Source
+        } #>
+
     }
-} #convert
+    End {
+        Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Ending conversion"
+    }
+}
+
 
 #parse the winget output into a list object
 Function _parseShowData {
@@ -109,16 +76,20 @@ Function _parseShowData {
 Function _parseVersion {
     #parse out odd characters from version strings
     [cmdletbinding()]
-    Param([string]$VersionString)
+    Param([string[]]$VersionString)
 
-    if ($versionString -match "unknown") {
-        $out = $null
-    }
-    elseif ($VersionString -match "[\<\>]") {
-        $out = ($VersionString -replace $matches.values,"").Trim()
-    }
-    else {
-        $out = $VersionString.Trim()
+    $out = @()
+    foreach ($v in $VersionString) {
+
+        if ($v -match "unknown") {
+            $out += $null
+        }
+        elseif ($v -match "[\<\>]") {
+            $out += ($v -replace $matches.values, "").Trim()
+        }
+        else {
+            $out += $v.Trim()
+        }
     }
 
     $out

@@ -12,7 +12,7 @@ https://github.com/jdhitsolutions/PSScriptTools
       <!--Created 12/17/2021 08:52:48 by THINKP1\Jeff-->
       <Name>default</Name>
       <ViewSelectedBy>
-        <TypeName>wingetUpgrade</TypeName>
+        <TypeName>wgUpgrade</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <!--Delete the AutoSize node if you want to use the defined widths.

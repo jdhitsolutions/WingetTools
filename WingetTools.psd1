@@ -5,7 +5,7 @@
 @{
 
     RootModule           = 'WingetTools.psm1'
-    ModuleVersion        = '1.4.1'
+    ModuleVersion        = '1.5.0'
     CompatiblePSEditions = @('Desktop', 'Core')
     GUID                 = '1130bb85-58d1-487d-9763-c38011f9613d'
     Author               = 'Jeff Hicks'
@@ -16,7 +16,7 @@
 
     # Type files (.ps1xml) to be loaded when importing this module
     TypesToProcess       = @("types\wginstalled.types.ps1xml")
-    RequiredModules      = @("ThreadJob")
+    RequiredModules      = @("ThreadJob","psyml")
 
     FormatsToProcess     = @(
         'formats\wgpackage.format.ps1xml',
@@ -25,7 +25,7 @@
         'formats\wginstalled.format.ps1xml'
     )
     FunctionsToExport    = 'Get-WGPackage', 'Install-Winget', 'Get-WGReleaseNote',
-    'Get-WGInstalled', 'Invoke-WGUpgrade', 'Get-WGUpgrade', 'Test-WGVersion' , 'Get-WingetPath'
+    'Get-WGInstalled', 'Invoke-WGUpgrade', 'Get-WGUpgrade', 'Test-WGVersion' , 'Get-WGPath'
     AliasesToExport      = 'wglatest', 'iwg'
     PrivateData          = @{
         PSData = @{
