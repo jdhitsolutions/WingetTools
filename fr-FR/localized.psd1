@@ -1,0 +1,17 @@
+@{
+    Found               = "Trouvé"
+    Name                = "Nom"
+    ID                  = "ID"
+    Version             = "Variante"
+    Publisher           = "Editeur"
+    PublisherUrl        = "PublisherUrl"
+    PublisherSupportUrl = "PublisherSupportUrl"
+    Author              = "Auteur"
+    Moniker             = "Surnom"
+    Description         = "Description"
+    Homepage            = "Page d'accueil"
+    License             = "Licence"
+    LicenseURL          = "LicenseURL"
+    Source              = "Origine"
+    Computername        = "NomOrdinateur"
+}

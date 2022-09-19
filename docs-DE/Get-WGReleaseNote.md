@@ -1,7 +1,7 @@
 ---
 external help file: WingetTools-help.xml
 Module Name: WingetTools
-online version: https://bit.ly/3nauPEz
+online version: https://bit.ly/3CfeCp5
 schema: 2.0.0
 ---
 

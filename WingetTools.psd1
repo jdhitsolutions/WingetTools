@@ -5,7 +5,7 @@
 @{
 
     RootModule           = 'WingetTools.psm1'
-    ModuleVersion        = '1.5.0'
+    ModuleVersion        = '1.6.0'
     CompatiblePSEditions = @('Desktop', 'Core')
     GUID                 = '1130bb85-58d1-487d-9763-c38011f9613d'
     Author               = 'Jeff Hicks'

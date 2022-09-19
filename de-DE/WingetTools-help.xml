@@ -451,206 +451,10 @@ C:\Users\Jeff\AppData\Local\Microsoft\WindowsApps\Winget.exe</dev:code>
         </dev:remarks>
       </command:example>
     </command:examples>
-    <command:relatedLinks />
-  </command:command>
-  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-    <command:details>
-      <command:name>Get-WGReleaseNote</command:name>
-      <command:verb>Get</command:verb>
-      <command:noun>WGReleaseNote</command:noun>
-      <maml:description>
-        <maml:para>Holen Sie sich die neuesten Versionshinweise für winget.</maml:para>
-      </maml:description>
-    </command:details>
-    <maml:description>
-      <maml:para>Dieser Befehl fragt das Github-Repository nach dem Winget-Projekt ab und zeigt die Versionshinweise für die neueste Version an. Sie können es auch im Markdown-Format anzeigen oder zur Online-Version gehen.</maml:para>
-    </maml:description>
-    <command:syntax>
-      <command:syntaxItem>
-        <maml:name>Get-WGReleaseNote</maml:name>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="md">
-          <maml:name>AsMarkdown</maml:name>
-          <maml:description>
-            <maml:para>Erstellen Sie ein Markdown-Dokument.</maml:para>
-          </maml:description>
-          <dev:type>
-            <maml:name>SwitchParameter</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>False</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>Online</maml:name>
-          <maml:description>
-            <maml:para>Öffnen Sie den Speicherort der Versionshinweise online mit Ihrem Standard-Webbrowser.</maml:para>
-          </maml:description>
-          <dev:type>
-            <maml:name>SwitchParameter</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>False</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>Preview</maml:name>
-          <maml:description>
-            <maml:para>Holen Sie sich die neueste Vorschauversion.</maml:para>
-          </maml:description>
-          <dev:type>
-            <maml:name>SwitchParameter</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>False</dev:defaultValue>
-        </command:parameter>
-      </command:syntaxItem>
-    </command:syntax>
-    <command:parameters>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="md">
-        <maml:name>AsMarkdown</maml:name>
-        <maml:description>
-          <maml:para>Erstellen Sie ein Markdown-Dokument.</maml:para>
-        </maml:description>
-        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
-        <dev:type>
-          <maml:name>SwitchParameter</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>False</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>Online</maml:name>
-        <maml:description>
-          <maml:para>Öffnen Sie den Speicherort der Versionshinweise online mit Ihrem Standard-Webbrowser.</maml:para>
-        </maml:description>
-        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
-        <dev:type>
-          <maml:name>SwitchParameter</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>False</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>Preview</maml:name>
-        <maml:description>
-          <maml:para>Holen Sie sich die neueste Vorschauversion.</maml:para>
-        </maml:description>
-        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
-        <dev:type>
-          <maml:name>SwitchParameter</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>False</dev:defaultValue>
-      </command:parameter>
-    </command:parameters>
-    <command:inputTypes>
-      <command:inputType>
-        <dev:type>
-          <maml:name>None</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:inputType>
-    </command:inputTypes>
-    <command:returnValues>
-      <command:returnValue>
-        <dev:type>
-          <maml:name>System.String</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:returnValue>
-      <command:returnValue>
-        <dev:type>
-          <maml:name>WGReleaseNote</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:returnValue>
-    </command:returnValues>
-    <maml:alertSet>
-      <maml:alert>
-        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
-      </maml:alert>
-    </maml:alertSet>
-    <command:examples>
-      <command:example>
-        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-WGReleaseNote
-
-Name       : Windows Package Manager v1.1.12653
-Version    : v1.1.12653
-Published  : 9/27/2021 6:08:01 PM
-Prerelease : False
-Notes      : This release represents our Windows Package Manager 1.release
-             candidate build for Windows 10 (1809+).
-
-             Experimental features have been disabled in this release. We will
-             follow this release with another Pre-release "developer"
-             build at GitHub so users can continue with experimental features
-             available.
-
-             # Bugs
-             #797 Silent install of "winget install git.git" is not working
-             #1497 Make rename retry more frequently for longer, then try
-             making a hardlink
-Link       : https://github.com/microsoft/winget-cli/releases/tag/v1.1.12653</dev:code>
-        <dev:remarks>
-          <maml:para>Die Standardausgabe.</maml:para>
-        </dev:remarks>
-      </command:example>
-      <command:example>
-        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-WGReleaseNote -asmarkdown | Show-Markdown</dev:code>
-        <dev:remarks>
-          <maml:para>Bei Ausführung in PowerShell 7 können Sie die Markdown-Cmdlets verwenden.</maml:para>
-        </dev:remarks>
-      </command:example>
-      <command:example>
-        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-WGReleaseNote | Select-Object Name,Version,Published
-
-Name                               Version    Published
-----                               -------    ---------
-Windows Package Manager v1.1.12653 v1.1.12653 9/27/2021 6:08:01 PM</dev:code>
-        <dev:remarks>
-          <maml:para>Die Ausgabe ist ein Objekt.</maml:para>
-        </dev:remarks>
-      </command:example>
-      <command:example>
-        <maml:title>-------------------------- Example 4 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-WGReleaseNote -Preview
-
-
-Name       : Windows Package Manager v1.1.12701
-Version    : v1.1.12701
-Published  : 9/28/2021 10:30:01 AM
-Prerelease : True
-Notes      : This release is the first development build after the Windows
-             Package Manager 1.1 release candidate build for Windows 10
-             (1809+).
-
-             Experimental features have been enabled in this release. This
-             build will be released to Windows Insider Dev builds, and
-             Windows Package Manager Insiders.</dev:code>
-        <dev:remarks>
-          <maml:para>Holen Sie sich die Versionshinweise für die neueste Vorschau.</maml:para>
-        </dev:remarks>
-      </command:example>
-    </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://bit.ly/3nauPEz</maml:uri>
-      </maml:navigationLink>
-      <maml:navigationLink>
-        <maml:linkText>Install-WinGet</maml:linkText>
-        <maml:uri></maml:uri>
-      </maml:navigationLink>
-      <maml:navigationLink>
-        <maml:linkText>Test-WGVersion</maml:linkText>
-        <maml:uri></maml:uri>
+        <maml:uri>https://bit.ly/3QRKW5t</maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
   </command:command>
@@ -1368,6 +1172,207 @@ False</dev:code>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Get-WGReleaseNote</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-WGReleaseNote</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>WGReleaseNote</command:noun>
+      <maml:description>
+        <maml:para>Holen Sie sich die neuesten Versionshinweise für winget.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Dieser Befehl fragt das Github-Repository nach dem Winget-Projekt ab und zeigt die Versionshinweise für die neueste Version an. Sie können es auch im Markdown-Format anzeigen oder zur Online-Version gehen.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-WGReleaseNote</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="md">
+          <maml:name>AsMarkdown</maml:name>
+          <maml:description>
+            <maml:para>Erstellen Sie ein Markdown-Dokument.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Online</maml:name>
+          <maml:description>
+            <maml:para>Öffnen Sie den Speicherort der Versionshinweise online mit Ihrem Standard-Webbrowser.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Preview</maml:name>
+          <maml:description>
+            <maml:para>Holen Sie sich die neueste Vorschauversion.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="md">
+        <maml:name>AsMarkdown</maml:name>
+        <maml:description>
+          <maml:para>Erstellen Sie ein Markdown-Dokument.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Online</maml:name>
+        <maml:description>
+          <maml:para>Öffnen Sie den Speicherort der Versionshinweise online mit Ihrem Standard-Webbrowser.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Preview</maml:name>
+        <maml:description>
+          <maml:para>Holen Sie sich die neueste Vorschauversion.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>WGReleaseNote</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-WGReleaseNote
+
+Name       : Windows Package Manager v1.1.12653
+Version    : v1.1.12653
+Published  : 9/27/2021 6:08:01 PM
+Prerelease : False
+Notes      : This release represents our Windows Package Manager 1.release
+             candidate build for Windows 10 (1809+).
+
+             Experimental features have been disabled in this release. We will
+             follow this release with another Pre-release "developer"
+             build at GitHub so users can continue with experimental features
+             available.
+
+             # Bugs
+             #797 Silent install of "winget install git.git" is not working
+             #1497 Make rename retry more frequently for longer, then try
+             making a hardlink
+Link       : https://github.com/microsoft/winget-cli/releases/tag/v1.1.12653</dev:code>
+        <dev:remarks>
+          <maml:para>Die Standardausgabe.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-WGReleaseNote -asmarkdown | Show-Markdown</dev:code>
+        <dev:remarks>
+          <maml:para>Bei Ausführung in PowerShell 7 können Sie die Markdown-Cmdlets verwenden.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-WGReleaseNote | Select-Object Name,Version,Published
+
+Name                               Version    Published
+----                               -------    ---------
+Windows Package Manager v1.1.12653 v1.1.12653 9/27/2021 6:08:01 PM</dev:code>
+        <dev:remarks>
+          <maml:para>Die Ausgabe ist ein Objekt.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 4 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-WGReleaseNote -Preview
+
+
+Name       : Windows Package Manager v1.1.12701
+Version    : v1.1.12701
+Published  : 9/28/2021 10:30:01 AM
+Prerelease : True
+Notes      : This release is the first development build after the Windows
+             Package Manager 1.1 release candidate build for Windows 10
+             (1809+).
+
+             Experimental features have been enabled in this release. This
+             build will be released to Windows Insider Dev builds, and
+             Windows Package Manager Insiders.</dev:code>
+        <dev:remarks>
+          <maml:para>Holen Sie sich die Versionshinweise für die neueste Vorschau.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://bit.ly/3nauPEz</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Install-WinGet</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Test-WGVersion</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>

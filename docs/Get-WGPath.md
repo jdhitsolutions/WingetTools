@@ -1,7 +1,7 @@
 ---
 external help file: WingetTools-help.xml
 Module Name: WingetTools
-online version:
+online version: https://bit.ly/3QRKW5t
 schema: 2.0.0
 ---
 
@@ -9,7 +9,7 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
-Get the Winget executable path
+Get the Winget executable path.
 
 ## SYNTAX
 

@@ -404,7 +404,7 @@ Microsoft PowerBI Desktop Microsoft.PowerBI   2.102.845.0</dev:code>
       <command:verb>Get</command:verb>
       <command:noun>WGPath</command:noun>
       <maml:description>
-        <maml:para>Get the Winget executable path</maml:para>
+        <maml:para>Get the Winget executable path.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -451,7 +451,12 @@ C:\Users\Jeff\AppData\Local\Microsoft\WindowsApps\Winget.exe</dev:code>
         </dev:remarks>
       </command:example>
     </command:examples>
-    <command:relatedLinks />
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://bit.ly/3QRKW5t</maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
