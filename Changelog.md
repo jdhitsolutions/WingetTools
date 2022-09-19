@@ -1,5 +1,15 @@
 # Changelog for WingetTools
 
+## v1.6.0
+
++ Added missing online help links.
++ Added localized data for `fr-FR`. This needs to be validated by someone running this culture as I'm not sure exactly what Winget will return.
++ Modified code to filter out extended ASCII characters when parsing YAML content.
++ Merged [PR #10](https://github.com/jdhitsolutions/WingetTools/pull/10) Thank you @Zephyrusg.
++ Modified conversion code to strip out Release Notes since that section often causes yaml conversion problems and it isn't being used.
++ Updated help.
++ Updated `README.md`.
+
 ## v1.5.0
 
 + Revised `Get-WGInstalled` to better handle non-English culture. [Issue #8](https://github.com/jdhitsolutions/WingetTools/issues/8)

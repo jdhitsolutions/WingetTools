@@ -342,11 +342,9 @@ Git.Git                                     2.37.1               2.37.1         
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Get-WGPackage -name "Foxit PDF Reader"
 
-Name             ID                Version      Description
-----             --                -------      -----------
-Foxit PDF Reader Foxit.FoxitReader 11.2.1.53537 Foxit is a powerful PDF reader
-                                                for viewing, filling out forms
-                                                and more.</dev:code>
+Name                      ID                             Version         Description
+----                      --                             -------         -----------
+Foxit PDF Reader          Foxit.FoxitReader         12.0.1.12430         Foxit is a powerful PDF reader for viewing, filling out forms and more.</dev:code>
         <dev:remarks>
           <maml:para>Get a package by its name.</maml:para>
         </dev:remarks>
@@ -355,20 +353,22 @@ Foxit PDF Reader Foxit.FoxitReader 11.2.1.53537 Foxit is a powerful PDF reader
         <maml:title>-------------------------- Example 2 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Get-WGPackage -id "Microsoft.Powershell.Preview" | Select-Object *
 
-Name                  : PowerShell Preview
-ID                    : Microsoft.PowerShell.Preview
-Version               : 7.3.0.3
-Publisher             : Microsoft Corporation
-Publisher URL         : https://github.com/PowerShell/PowerShell
-Publisher Support URL : https://github.com/PowerShell/PowerShell/issues
-Author                : Microsoft Corporation
-Moniker               : pwsh-preview
-Description           : PowerShell is a cross-platform (Windows, Linux, and
-                        macOS) automation and configuration tool/framework that
-                        works well with your existing tools and is optimized
-                        for dealing with structured data (e.g. JSON, CSV, XML,
-                        etc.), REST APIs, and object models.
-Homepage              : https://microsoft.com/PowerShell</dev:code>
+Moniker             : pwsh-preview
+Description         : PowerShell is a cross-platform Windows, Linux, and macOS
+                      automation and configuration tool/frame work that works
+                      well with your existing tools and is optimized for
+                      dealing with structured data e.g. JSON, CSV, XML, etc.,
+                      REST APIs, and object models.
+Author              : Microsoft Corporation
+Publisher           : Microsoft Corporation
+PublisherUrl        : https://github.com/PowerShell/PowerShell
+PublisherSupportUrl : https://github.com/PowerShell/PowerShell/issues
+Homepage            : https://microsoft.com/PowerShell
+Name                : PowerShell Preview
+ID                  : Microsoft.PowerShell.Preview
+Version             : 7.3.7.0
+Source              : winget
+Computername        : WIN11DESK</dev:code>
         <dev:remarks>
           <maml:para>The output is a rich object.</maml:para>
         </dev:remarks>
@@ -380,8 +380,8 @@ Homepage              : https://microsoft.com/PowerShell</dev:code>
 
 Name                      ID                  Version
 ----                      --                  -------
-DAX Studio                DaxStudio.DaxStudio 2.17.3.683
-Microsoft PowerBI Desktop Microsoft.PowerBI   2.102.845.0</dev:code>
+Microsoft PowerBI Desktop Microsoft.PowerBI   2.109.642.0
+DAX Studio                DaxStudio.DaxStudio 3.0.0.725</dev:code>
         <dev:remarks>
           <maml:para>You can pipe the results of a winget search command to this function.</maml:para>
         </dev:remarks>
@@ -759,15 +759,17 @@ Notes      : This release is the first development build after the Windows
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Get-WGUpgrade
 
-Name                      ID                                            Installed       Available
-----                      --                                            ---------       ---------
-Visual Studio Community   Microsoft.VisualStudio.2019.Community         16.11.10        16.11.17
-2019
-CCleaner                  Piriform.CCleaner                             6.00            6.01
-Discord                   Discord.Discord                               1.0.9003        1.0.9005
-Foxit PDF Reader          Foxit.FoxitReader                             12.0.0.12394    12.0.1.12430
-Notepad++                 Notepad++.Notepad++                           8.3.3           8.4.4
-...</dev:code>
+Name                                   ID                                    Installed            Available
+----                                   --                                    ---------            ---------
+Discord                                Discord.Discord                       1.0.9005             1.0.9006
+Visual Studio Community 2019           Microsoft.VisualStudio.2019.Community 16.11.18             16.11.19
+Spotify                                Spotify.Spotify                       1.1.91.824.g07f1e963 1.1.93.896.g3ae3b4f3
+VSCodium                               VSCodium.VSCodium                     1.71.1.22256         1.71.2.22258
+Camtasia                               TechSmith.Camtasia                    22.0.4.39133         22.1.1.39848
+Windows Software Development Kit       Microsoft.WindowsSDK                  10.0.22000.832       10.0.22621.1
+Microsoft SQL Server Management Studio Microsoft.SQLServerManagementStudio   18.12                18.12.1
+PowerToys (Preview)                    Microsoft.PowerToys                   0.62.0               0.62.1
+ESET Endpoint Security                 ESET.EndpointSecurity                 9.0.2046.0           9.1.2057.0</dev:code>
         <dev:remarks>
           <maml:para>Get all available updates.</maml:para>
         </dev:remarks>
@@ -776,10 +778,9 @@ Notepad++                 Notepad++.Notepad++                           8.3.3   
         <maml:title>-------------------------- Example 2 --------------------------</maml:title>
         <dev:code>PS C:\&gt; get-wgupgrade p*
 
-Name                      ID                                            Installed       Available
-----                      --                                            ---------       ---------
-PowerToys (Preview)       Microsoft.PowerToys                           0.58.0          0.61.1
-Python 3                  Python.Python.3                               3.10.3          3.10.6</dev:code>
+Name                ID                  Installed Available
+----                --                  --------- ---------
+PowerToys (Preview) Microsoft.PowerToys 0.62.0    0.62.1</dev:code>
         <dev:remarks>
           <maml:para>Get upgrades with a name that begins with P.</maml:para>
         </dev:remarks>
@@ -788,13 +789,12 @@ Python 3                  Python.Python.3                               3.10.3  
         <maml:title>-------------------------- Example 3 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Get-WGUpgrade -id micro* | Select-Object Name,Version,Available
 
-Name                                                 Version       Available
-----                                                 -------       ---------
-Visual Studio Community 2019                         16.11.10      16.11.17
-Microsoft Visual C++ 2015-2022 Redistributable (x86) 14.31.31103.0 14.32.31332.0
-Microsoft .NET SDK 3.1                               3.1.419       3.1.421
-PowerToys (Preview)                                  0.58.0        0.61.1
-Microsoft Visual C++ 2015-2022 Redistributable (x86) 14.32.31326.0 14.32.31332.0</dev:code>
+Name                                   Version        Available
+----                                   -------        ---------
+Visual Studio Community 2019           16.11.18       16.11.19
+Windows Software Development Kit       10.0.22000.832 10.0.22621.1
+Microsoft SQL Server Management Studio 18.12          18.12.1
+PowerToys (Preview)                    0.62.0         0.62.1</dev:code>
         <dev:remarks>
           <maml:para>Get upgrades by ID that starts with "micro". Note that the actual object property name, "Version", differs from the formatted column header of "Installed."</maml:para>
         </dev:remarks>

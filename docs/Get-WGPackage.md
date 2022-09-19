@@ -48,11 +48,9 @@ This command is a PowerShell wrapper around winget.cmd that will get a package a
 ```powershell
 PS C:\> Get-WGPackage -name "Foxit PDF Reader"
 
-Name             ID                Version      Description
-----             --                -------      -----------
-Foxit PDF Reader Foxit.FoxitReader 11.2.1.53537 Foxit is a powerful PDF reader
-                                                for viewing, filling out forms
-                                                and more.
+Name                      ID                             Version         Description
+----                      --                             -------         -----------
+Foxit PDF Reader          Foxit.FoxitReader         12.0.1.12430         Foxit is a powerful PDF reader for viewing, filling out forms and more.
 ```
 
 Get a package by its name.
@@ -62,20 +60,22 @@ Get a package by its name.
 ```powershell
 PS C:\> Get-WGPackage -id "Microsoft.Powershell.Preview" | Select-Object *
 
-Name                  : PowerShell Preview
-ID                    : Microsoft.PowerShell.Preview
-Version               : 7.3.0.3
-Publisher             : Microsoft Corporation
-Publisher URL         : https://github.com/PowerShell/PowerShell
-Publisher Support URL : https://github.com/PowerShell/PowerShell/issues
-Author                : Microsoft Corporation
-Moniker               : pwsh-preview
-Description           : PowerShell is a cross-platform (Windows, Linux, and
-                        macOS) automation and configuration tool/framework that
-                        works well with your existing tools and is optimized
-                        for dealing with structured data (e.g. JSON, CSV, XML,
-                        etc.), REST APIs, and object models.
-Homepage              : https://microsoft.com/PowerShell
+Moniker             : pwsh-preview
+Description         : PowerShell is a cross-platform Windows, Linux, and macOS
+                      automation and configuration tool/frame work that works
+                      well with your existing tools and is optimized for
+                      dealing with structured data e.g. JSON, CSV, XML, etc.,
+                      REST APIs, and object models.
+Author              : Microsoft Corporation
+Publisher           : Microsoft Corporation
+PublisherUrl        : https://github.com/PowerShell/PowerShell
+PublisherSupportUrl : https://github.com/PowerShell/PowerShell/issues
+Homepage            : https://microsoft.com/PowerShell
+Name                : PowerShell Preview
+ID                  : Microsoft.PowerShell.Preview
+Version             : 7.3.7.0
+Source              : winget
+Computername        : WIN11DESK
 ```
 
 The output is a rich object.
@@ -88,8 +88,8 @@ PS C:\> winget search --tag powerbi | Get-WGPackage | Select-Object Name,ID,Vers
 
 Name                      ID                  Version
 ----                      --                  -------
-DAX Studio                DaxStudio.DaxStudio 2.17.3.683
-Microsoft PowerBI Desktop Microsoft.PowerBI   2.102.845.0
+Microsoft PowerBI Desktop Microsoft.PowerBI   2.109.642.0
+DAX Studio                DaxStudio.DaxStudio 3.0.0.725
 ```
 
 You can pipe the results of a winget search command to this function.

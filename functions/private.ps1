@@ -11,9 +11,25 @@ Function _convert {
         Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Processing package data"
     }
     Process {
+        #9/19/2022 filter out Release Notes because the content is often not properly
+        #formatted for yaml and I'm not using it anyway.
+
+        $list = [System.Collections.Generic.list[string]]::new()
+        $package.replace(" - ", " ").replace('ÔÇó', "*") -replace "[^\s\w\.\:\/~\,-]", "" |
+        Select-Object -Skip 1 |
+        Where-Object { $_ -match "^(\s+)?(\b(\w+)\b).*:" } |
+        ForEach-Object { $list.Add($_) }
+
+        $i = $list.FindIndex({ $args[0] -match "^Release Notes:" })
+        $j = $list.FindIndex({ $args[0] -match "^Installer:" })
+        if ($i -gt 0 -AND $j -gt $i) {
+            Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Removing lines $i to $($j-1)"
+            $list.RemoveRange($i, ($j - 1) - $i)
+        }
+
         Try {
             Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Converting to YAML"
-            $yml = $package.replace(" - ", " ").replace("ÔÇó", "*") | Select-Object -Skip 1 | Where-Object { $_ -match "^(\s+)?(\b(\w+)\b).*:" } | ConvertFrom-Yaml -ErrorAction stop
+            $yml = $list | ConvertFrom-Yaml -ErrorAction stop
         }
         Catch {
             Write-Warning "Failed to convert to YAML. $($_.exception.message)"
@@ -24,39 +40,25 @@ Function _convert {
         $online = _parseVersion $yml.$($localized.version)
 
         $out = [wgPackage]::new()
-        $out.Name                = $rxname.match($package[0]).groups["name"].value
-        $out.ID                  = $rxname.match($package[0]).groups["id"].value
-        $out.Version             = $online
-        $out.Publisher           = $yml.$($localized.Publisher)
-        $out.PublisherUrl        = $yml.$($localized.PublisherURL)
+        $out.Name = $rxname.match($package[0]).groups["name"].value
+        $out.ID = $rxname.match($package[0]).groups["id"].value
+        $out.Version = $online
+        $out.Publisher = $yml.$($localized.Publisher)
+        $out.PublisherUrl = $yml.$($localized.PublisherURL)
         $out.PublisherSupportUrl = $yml.$($localized.PublisherSupportUrl)
-        $out.Author              = $yml.$($localized.Author)
-        $out.Moniker             = $yml.$($localized.Moniker)
-        $out.Description         = $yml.$($localized.Description)
-        $out.Homepage            = $yml.$($Localized.homepage)
-        $out.Source              = $Source
+        $out.Author = $yml.$($localized.Author)
+        $out.Moniker = $yml.$($localized.Moniker)
+        $out.Description = $yml.$($localized.Description)
+        $out.Homepage = $yml.$($Localized.homepage)
+        $out.Source = $Source
 
         $out
-       <#  [pscustomobject]@{
-            Name                = $rxname.match($package[0]).groups["name"].value
-            ID                  = $rxname.match($package[0]).groups["id"].value
-            Version             = $online
-            Publisher           = $yml.$($localized.Publisher)
-            PublisherUrl        = $yml.$($localized.PublisherURL)
-            PublisherSupportUrl = $yml.$($localized.PublisherSupportUrl)
-            Author              = $yml.$($localized.Author)
-            Moniker             = $yml.$($localized.Moniker)
-            Description         = $yml.$($localized.Description)
-            Homepage            = $yml.$($Localized.homepage)
-            Source              = $Source
-        } #>
 
     }
     End {
         Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Ending conversion"
     }
 }
-
 
 #parse the winget output into a list object
 Function _parseShowData {

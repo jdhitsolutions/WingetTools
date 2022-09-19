@@ -36,15 +36,17 @@ Use this command to get information about available winget upgrades. You can the
 ```powershell
 PS C:\> Get-WGUpgrade
 
-Name                      ID                                            Installed       Available
-----                      --                                            ---------       ---------
-Visual Studio Community   Microsoft.VisualStudio.2019.Community         16.11.10        16.11.17
-2019
-CCleaner                  Piriform.CCleaner                             6.00            6.01
-Discord                   Discord.Discord                               1.0.9003        1.0.9005
-Foxit PDF Reader          Foxit.FoxitReader                             12.0.0.12394    12.0.1.12430
-Notepad++                 Notepad++.Notepad++                           8.3.3           8.4.4
-...
+Name                                   ID                                    Installed            Available
+----                                   --                                    ---------            ---------
+Discord                                Discord.Discord                       1.0.9005             1.0.9006
+Visual Studio Community 2019           Microsoft.VisualStudio.2019.Community 16.11.18             16.11.19
+Spotify                                Spotify.Spotify                       1.1.91.824.g07f1e963 1.1.93.896.g3ae3b4f3
+VSCodium                               VSCodium.VSCodium                     1.71.1.22256         1.71.2.22258
+Camtasia                               TechSmith.Camtasia                    22.0.4.39133         22.1.1.39848
+Windows Software Development Kit       Microsoft.WindowsSDK                  10.0.22000.832       10.0.22621.1
+Microsoft SQL Server Management Studio Microsoft.SQLServerManagementStudio   18.12                18.12.1
+PowerToys (Preview)                    Microsoft.PowerToys                   0.62.0               0.62.1
+ESET Endpoint Security                 ESET.EndpointSecurity                 9.0.2046.0           9.1.2057.0
 ```
 
 Get all available updates.
@@ -54,10 +56,9 @@ Get all available updates.
 ```powershell
 PS C:\> get-wgupgrade p*
 
-Name                      ID                                            Installed       Available
-----                      --                                            ---------       ---------
-PowerToys (Preview)       Microsoft.PowerToys                           0.58.0          0.61.1
-Python 3                  Python.Python.3                               3.10.3          3.10.6
+Name                ID                  Installed Available
+----                --                  --------- ---------
+PowerToys (Preview) Microsoft.PowerToys 0.62.0    0.62.1
 ```
 
 Get upgrades with a name that begins with P.
@@ -67,14 +68,12 @@ Get upgrades with a name that begins with P.
 ```powershell
 PS C:\> Get-WGUpgrade -id micro* | Select-Object Name,Version,Available
 
-Name                                                 Version       Available
-----                                                 -------       ---------
-Visual Studio Community 2019                         16.11.10      16.11.17
-Microsoft Visual C++ 2015-2022 Redistributable (x86) 14.31.31103.0 14.32.31332.0
-Microsoft .NET SDK 3.1                               3.1.419       3.1.421
-PowerToys (Preview)                                  0.58.0        0.61.1
-Microsoft Visual C++ 2015-2022 Redistributable (x86) 14.32.31326.0 14.32.31332.0
-
+Name                                   Version        Available
+----                                   -------        ---------
+Visual Studio Community 2019           16.11.18       16.11.19
+Windows Software Development Kit       10.0.22000.832 10.0.22621.1
+Microsoft SQL Server Management Studio 18.12          18.12.1
+PowerToys (Preview)                    0.62.0         0.62.1
 ```
 
 Get upgrades by ID that starts with "micro". Note that the actual object property name, "Version", differs from the formatted column header of "Installed."

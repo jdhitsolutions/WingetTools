@@ -16,7 +16,7 @@
 
     # Type files (.ps1xml) to be loaded when importing this module
     TypesToProcess       = @("types\wginstalled.types.ps1xml")
-    RequiredModules      = @("ThreadJob","psyml")
+    RequiredModules      = @("ThreadJob", "psyml")
 
     FormatsToProcess     = @(
         'formats\wgpackage.format.ps1xml',

@@ -47,26 +47,29 @@ This command is a PowerShell wrapper aroung winget.cmd that will get a package a
 The command has a default table view but the output object has other properties you might want to use.
 
 ```text
-Name                  : GitHub CLI
-ID                    : GitHub.cli
-Version               : 2.14.3
-Publisher             : GitHub, Inc.
-Publisher URL         : https://github.com
-Publisher Support URL : https://help.github.com/en
-Author                : GitHub, Inc.
-Moniker               : gh
-Description           : gh is GitHub on the command line. It brings pull requests, issues, and other GitHub concepts
-                        to the terminal next to where you are already working with git and your code.
-Homepage              : https://github.com/cli/cli
+Moniker             : gh
+Description         : gh is GitHub on the command line. It brings pull
+                      requests, issues, and other GitHub concepts to
+                      the terminal next to where you are already working with git and your code.
+Author              : GitHub, Inc.
+Publisher           : GitHub, Inc.
+PublisherUrl        : https://github.com
+PublisherSupportUrl : https://help.github.com/en
+Homepage            : https://github.com/cli/cli
+Name                : GitHub CLI
+ID                  : GitHub.cli
+Version             : 2.15.0
+Source              : winget
+Computername        : WIN11DESK
 ```
 
-The command typically gets a single package, but you can pipe a winget search command to it.
+The command typically gets a single package, but you can pipe a `winget search` command to it.
 
 ![get winget package search](images/get-wgpackage-2.png)
 
 ## [Get-WGInstalled](docs/Get-WGInstalled.md)
 
-This command will get a list of all packages installed with winget. These will be packages with winget as the source. Here's a sample of the default output.
+This command will get a list of all packages installed with `winget`. These will be packages with winget as the source. Here's a sample of the default output.
 
 ![installed](images/get-wginstalled.png)
 
