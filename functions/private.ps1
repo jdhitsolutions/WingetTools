@@ -13,7 +13,7 @@ Function _convert {
     Process {
         Try {
             Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Converting to YAML"
-            $yml = $package.replace(" - ", " ") | Select-Object -Skip 1 | Where-Object { $_ -match "^(\s+)?(\b(\w+)\b).*:" } | ConvertFrom-Yaml -ErrorAction stop
+            $yml = $package.replace(" - ", " ").replace("ÔÇó", "*") | Select-Object -Skip 1 | Where-Object { $_ -match "^(\s+)?(\b(\w+)\b).*:" } | ConvertFrom-Yaml -ErrorAction stop
         }
         Catch {
             Write-Warning "Failed to convert to YAML. $($_.exception.message)"
