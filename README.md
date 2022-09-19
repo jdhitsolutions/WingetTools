@@ -174,7 +174,7 @@ False
 
 ## Localization
 
-Beginning with version 1.5.0, I've attempted to handle localization issues. It appears that in some locations, the winget output is localized which throws off the regular expression patterns I originally used. I am now using localized data to parse the winget output and construct the custom objects.  Currently, the only supported culture is `de-DE`. The default will be `en-US`.
+Beginning with version 1.5.0, I've attempted to handle localization issues. It appears that in some locations, the winget output is localized which throws off the regular expression patterns I originally used. I am now using localized data to parse the winget output and construct the custom objects.  Currently, the only supported cultures are `de-DE` and 'fr-FR`. The default will be `en-US`.
 
 If you encounter problems running module commands under a different culture, please post an issue. Include the output from these commands.
 
@@ -182,6 +182,8 @@ If you encounter problems running module commands under a different culture, ple
 winget show --id microsoft.powershell --source winget
 Get-Culture
 ```
+
+I've also started to add localized command help. I created German versions using Google Translate, so German speakers are more than welcome to submit a documentation pull request on the markdown files. I would also welcome PRs for other languages. Create a language specific docs folder like `docs-FR`, and add localized versions of the help markdown files. I will generate the module MAML help file after merging the pull request.
 
 ## Issues
 
