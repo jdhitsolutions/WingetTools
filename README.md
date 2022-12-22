@@ -2,6 +2,8 @@
 
 [![PSGallery Version](https://img.shields.io/powershellgallery/v/WingetTools.png?style=for-the-badge&label=PowerShell%20Gallery)](https://www.powershellgallery.com/packages/WingetTools/) [![PSGallery Downloads](https://img.shields.io/powershellgallery/dt/WingetTools.png?style=for-the-badge&label=Downloads)](https://www.powershellgallery.com/packages/WingetTools/)
 
+> The Winget team has [released an alpha version](https://github.com/microsoft/winget-cli/releases/tag/v1.4.3531) of a PowerShell module for Winget. In my opinion, it still needs a lot of work, but I'm hopeful. I'm deferring further work on this module in hope that the Winget team can release a viable PowerShell module that would make my module moot.
+
 Install this module from the PowerShell Gallery. It should work in Windows PowerShell 5.1 and PowerShell 7.x on Windows.
 
 ```powershell
