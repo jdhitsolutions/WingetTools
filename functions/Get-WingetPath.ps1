@@ -15,7 +15,9 @@
     }
     else {
         Write-Verbose "[$((Get-Date).TimeofDay)] Using user default location"
-        $winget = "$env:localappdata\Microsoft\WindowsApps\Winget.exe"
+        # 9/20/2022 use source path from Get-0Command
+        $winget = (Get-Command winget.exe).source
+        #"$env:localappdata\Microsoft\WindowsApps\Winget.exe"
      }
     $winget
     Write-Verbose "[$((Get-Date).TimeofDay)] Ending $($myinvocation.mycommand)"

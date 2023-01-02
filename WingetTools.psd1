@@ -5,12 +5,12 @@
 @{
 
     RootModule           = 'WingetTools.psm1'
-    ModuleVersion        = '1.6.0'
+    ModuleVersion        = '1.7.0'
     CompatiblePSEditions = @('Desktop', 'Core')
     GUID                 = '1130bb85-58d1-487d-9763-c38011f9613d'
     Author               = 'Jeff Hicks'
     CompanyName          = 'JDH Information Technology Solutions, Inc.'
-    Copyright            = '2021-2022 JDH Information Technology Solutions, Inc.'
+    Copyright            = '2021-2023 JDH Information Technology Solutions, Inc.'
     Description          = 'A set of PowerShell tools for working with the winget package manager.'
     PowerShellVersion    = '5.1'
 

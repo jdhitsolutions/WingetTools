@@ -51,6 +51,10 @@ Function Get-WGPackage {
 
         Write-Verbose "[$((Get-Date).TimeofDay) BEGIN  ] Using source $source"
         $winget = Get-WGPath
+        #9/20/2022 If winget path has a space enclose in quotes. Issue #11 -JDH
+        if ($winget -match "\s") {
+            $winget  = "&'$winget'"
+        }
         $cmdText = "$winget show --source $source"
 
         Switch ($PSCmdlet.ParameterSetName) {
