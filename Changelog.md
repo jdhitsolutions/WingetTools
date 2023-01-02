@@ -1,5 +1,10 @@
 # Changelog for WingetTools
 
+## v1.7.0
+
+- Updated `Get-WingetPath` to use source from `Get-Command` under the user context.
+- Merged [PR #18](https://github.com/jdhitsolutions/WingetTools/pull/18)
+
 ## v1.6.0
 
 - Added missing online help links.
