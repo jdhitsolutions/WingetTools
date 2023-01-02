@@ -24,7 +24,7 @@ Function _convert {
         $j = $list.FindIndex({ $args[0] -match "^Installer:" })
         if ($i -gt 0 -AND $j -gt $i) {
             Write-Verbose "[$((Get-Date).TimeofDay) CONVERT] Removing lines $i to $($j-1)"
-            $list.RemoveRange($i, ($j - 1) - $i)
+            $list.RemoveRange($i, ($j - $i)
         }
 
         Try {
