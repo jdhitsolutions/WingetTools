@@ -39,15 +39,24 @@ Function Get-WGInstalled {
                         Param([string]$VersionString)
 
                         if ($versionString -match "unknown") {
-                            $out = $null
-                        }
-                        elseif ($VersionString -match "[\<\>]") {
+                            return $null
+                        } elseif ($VersionString -match "[\<\>]") {
                             $out = ($VersionString -replace $matches.values, "").Trim()
-                        }
-                        else {
+                        } else {
                             $out = $VersionString.Trim()
                         }
-                        $out
+
+                        # Using [system.Version] helps standardization here. But if there are less
+                        # than 4 section in the version number, they are considered -1 instead of 0.
+                        # Reference: https://learn.microsoft.com/en-us/dotnet/api/system.version
+                        $out = [System.Version]$out
+                        if ($out.Revision -eq -1) { $revision = 0 } else { $revision = $out.Revision }
+                        if ($out.Build -eq -1) { $build = 0 } else { $build = $out.Build }
+                        if ($out.Minor -eq -1) { $minor = 0 } else { $minor = $out.Minor }
+                        if ($out.Major -eq -1) { $major = 0 } else { $major = $out.Major }
+
+                        $safe = [System.Version]::new($major, $minor, $build, $revision)
+                        $safe
                     }
 
                     try {
